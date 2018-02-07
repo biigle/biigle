@@ -1,0 +1,74 @@
+version: '2'
+
+services:
+
+  app:
+    image: biigle/app-dist
+    user: ${USER_ID}:${GROUP_ID}
+    restart: always
+    depends_on:
+      - cache
+    tmpfs:
+      - /var/www/storage/framework/views:uid=${USER_ID},gid=${GROUP_ID}
+    volumes:
+      - ./storage:/var/www/storage
+    env_file:
+      - .env
+    environment:
+      - "REDIS_HOST=cache"
+
+  web:
+    image: biigle/web-dist
+    restart: always
+    volumes_from:
+      - app
+    volumes:
+      - ./certificate:/etc/letsencrypt/live/example.com
+    ports:
+      - 80:80
+      - 443:443
+
+  worker:
+    image: biigle/worker-dist
+    user: ${USER_ID}:${GROUP_ID}
+    restart: always
+    depends_on:
+      - cache
+    volumes_from:
+      - app
+    env_file:
+      - .env
+    environment:
+      - "REDIS_HOST=cache"
+    command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
+
+  scheduler:
+    image: biigle/worker-dist
+    user: ${USER_ID}:${GROUP_ID}
+    restart: always
+    depends_on:
+      - cache
+    volumes_from:
+      - app
+    env_file:
+      - .env
+    environment:
+      - "REDIS_HOST=cache"
+    command: "/bin/sh -c 'while sleep 60; do php artisan schedule:run >> /dev/null 2>&1; done'"
+
+  database:
+    image: postgres:9.4-alpine
+    restart: always
+    volumes:
+      - dbdata:/var/lib/postgresql
+    environment:
+      - "POSTGRES_DB=homestead"
+      - "POSTGRES_USER=homestead"
+      - "POSTGRES_PASSWORD=secret"
+
+  cache:
+    image: redis:3.0-alpine
+    restart: always
+
+volumes:
+  dbdata:
