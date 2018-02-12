@@ -80,3 +80,5 @@ RUN php composer.phar config repositories.ananas vcs https://github.com/BiodataM
     && php artisan ananas:publish
 
 RUN rm composer.phar
+
+RUN php /var/www/artisan route:cache
