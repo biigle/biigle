@@ -9,10 +9,6 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --version=1.6.2 \
     && rm composer-setup.php
 
-ARG GITHUB_OAUTH_TOKEN
-# The COMPOSER_AUTH env variable did not work somehow.
-RUN php composer.phar config -g github-oauth.github.com ${GITHUB_OAUTH_TOKEN}
-
 ENV COMPOSER_NO_INTERACTION 1
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
@@ -30,6 +26,7 @@ RUN php composer.phar config repositories.projects vcs https://github.com/Biodat
 # Include the Composer cache directory to speed up the build.
 COPY cache /root/.composer/cache
 
+ARG GITHUB_OAUTH_TOKEN
 ARG PROJECTS_VERSION=">=1.0"
 ARG LABEL_TREES_VERSION=">=1.0"
 ARG VOLUMES_VERSION=">=1.0"
@@ -40,7 +37,8 @@ ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
-RUN php composer.phar require \
+RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
+    php composer.phar require \
     biigle/projects:${PROJECTS_VERSION} \
     biigle/label-trees:${LABEL_TREES_VERSION} \
     biigle/volumes:${VOLUMES_VERSION} \
@@ -75,6 +73,7 @@ RUN php artisan projects:publish \
     && php artisan laserpoints:publish \
     && php artisan ananas:publish
 
-RUN rm composer.phar
+RUN php composer.phar dump-autoload -o \
+    && rm composer.phar
 
 RUN php /var/www/artisan route:cache
