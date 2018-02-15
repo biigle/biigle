@@ -12,7 +12,7 @@ docker build -f app.dockerfile -t biigle/app-dist \
     --build-arg ANNOTATIONS_VERSION=">=3.0.0-beta2" \
     --build-arg LARGO_VERSION=">=2.0.0-beta2" \
     --build-arg EXPORT_VERSION=">=3.0.0-beta" \
-    --build-arg GEO_VERSION=">=1.0" \
+    --build-arg GEO_VERSION=">=1.7.0-beta" \
     --build-arg COLOR_SORT_VERSION=">=2.0.0-beta" \
     --build-arg LASERPOINTS_VERSION=">=2.0.0-beta" \
     --build-arg ANANAS_VERSION=">=1.0" \
