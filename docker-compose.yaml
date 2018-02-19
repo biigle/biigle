@@ -1,4 +1,4 @@
-version: '2'
+version: '2.3'
 
 services:
 
@@ -20,10 +20,17 @@ services:
   web:
     image: biigle/web-dist
     restart: always
-    volumes_from:
+    depends_on:
       - app
     volumes:
-      - ./certificate:/etc/letsencrypt/live/example.com
+      - type: bind
+        source: ./certificate
+        target: /etc/letsencrypt/live/example.com
+        read_only: true
+      - type: bind
+        source: ./storage
+        target: /var/www/storage
+        read_only: true
     ports:
       - 80:80
       - 443:443
