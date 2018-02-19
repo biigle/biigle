@@ -6,16 +6,16 @@ source ../.env
 
 docker build -f app.dockerfile -t biigle/app-dist \
     --build-arg GITHUB_OAUTH_TOKEN=${GITHUB_OAUTH_TOKEN} \
-    --build-arg LABEL_TREES_VERSION=">=1.0" \
-    --build-arg PROJECTS_VERSION=">=1.0" \
-    --build-arg VOLUMES_VERSION=">=2.0.0-beta" \
-    --build-arg ANNOTATIONS_VERSION=">=3.0.0-beta2" \
-    --build-arg LARGO_VERSION=">=2.0.0-beta2" \
-    --build-arg EXPORT_VERSION=">=3.0.0-beta" \
-    --build-arg GEO_VERSION=">=1.7.0-beta" \
-    --build-arg COLOR_SORT_VERSION=">=2.0.0-beta" \
-    --build-arg LASERPOINTS_VERSION=">=2.0.0-beta" \
-    --build-arg ANANAS_VERSION=">=1.0" \
+    --build-arg LABEL_TREES_VERSION="^1.0" \
+    --build-arg PROJECTS_VERSION="^1.0" \
+    --build-arg VOLUMES_VERSION="^2.0" \
+    --build-arg ANNOTATIONS_VERSION="^3.0" \
+    --build-arg LARGO_VERSION="^2.0" \
+    --build-arg EXPORT_VERSION="^3.0" \
+    --build-arg GEO_VERSION="^1.7" \
+    --build-arg COLOR_SORT_VERSION="^2.0" \
+    --build-arg LASERPOINTS_VERSION="^2.0" \
+    --build-arg ANANAS_VERSION="^1.0" \
     .
 
 # Use -s to skip updating the cache.
