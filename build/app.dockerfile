@@ -1,6 +1,13 @@
 FROM biigle/app
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
+# Configure the timezone.
+ARG TIMEZONE
+RUN apk add --no-cache tzdata \
+    && cp /usr/share/zoneinfo/${TIMEZONE} /etc/localtime \
+    && echo "${TIMEZONE}" > /etc/timezone \
+    && apk del tzdata
+
 # Ignore platform reqs because the app image is stripped down to the essentials
 # and doens't meet some of the requirements. We do this for the worker, though.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
