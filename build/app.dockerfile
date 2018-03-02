@@ -1,5 +1,6 @@
-FROM biigle/app
-MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
+# Run this in an intermediate container so the Compose cache is not contained in the
+# final image.
+FROM biigle/app AS intermediate
 
 # Configure the timezone.
 ARG TIMEZONE
@@ -84,3 +85,14 @@ RUN php composer.phar dump-autoload -o \
     && rm composer.phar
 
 RUN php /var/www/artisan route:cache
+
+# --- END intermediate ---
+
+FROM biigle/app
+MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
+
+ARG TIMEZONE
+COPY --from=intermediate /etc/localtime /etc/localtime
+RUN echo "${TIMEZONE}" > /etc/timezone
+
+COPY --from=intermediate /var/www /var/www
