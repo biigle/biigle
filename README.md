@@ -14,19 +14,23 @@ Perform these steps on the machine that should run BIIGLE.
    $ id -g biigle
    <group_id>
    ```
-
 2. Move `.env.example` to `.env`.
 
 3. Now set the configuration variables in `.env`:
 
    - `USER_ID` should be `<user_id>`.
    - `GROUP_ID` should be `<group_id>`.
+
+2. Move `build/.env.example` to `build/.env`.
+
+3. Now set the build configuration variables in `build/.env`:
+
    - `GITHUB_OAUTH_TOKEN` is an [OAuth token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) of your GitHub account.
    - `APP_KEY` is the secret encryption key. Generate one with: `head -c 32 /dev/urandom | base64`. Then set `APP_KEY=base64:<your_key>`.
    - `APP_URL` is `https://<your_domain>`.
    - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
 
-4. If you use an external database system (as is recommended), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `.env`.
+4. If you use an external database system (as is recommended), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `build/.env`.
 
 5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`.
 

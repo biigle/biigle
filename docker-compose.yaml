@@ -14,8 +14,6 @@ services:
       - ./storage:/var/www/storage
     env_file:
       - .env
-    environment:
-      - "REDIS_HOST=cache"
 
   web:
     image: biigle/web-dist
@@ -45,8 +43,6 @@ services:
       - app
     env_file:
       - .env
-    environment:
-      - "REDIS_HOST=cache"
     command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   scheduler:
@@ -59,8 +55,6 @@ services:
       - app
     env_file:
       - .env
-    environment:
-      - "REDIS_HOST=cache"
     command: "/bin/sh -c 'trap exit SIGTERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:

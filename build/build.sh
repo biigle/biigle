@@ -1,8 +1,7 @@
 #!/bin/bash
 set -e
 
-# Load GITHUB_OAUTH_TOKEN and SERVER_NAME.
-source ../.env
+source .env
 
 docker build -f app.dockerfile -t biigle/app-dist \
     --build-arg TIMEZONE=${APP_TIMEZONE} \

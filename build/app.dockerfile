@@ -86,6 +86,9 @@ RUN php composer.phar dump-autoload -o \
 
 RUN php /var/www/artisan route:cache
 
+COPY .env /var/www/.env
+RUN php /var/www/artisan config:cache && rm /var/www/.env
+
 # --- END intermediate ---
 
 FROM biigle/app
