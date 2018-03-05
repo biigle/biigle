@@ -12,8 +12,6 @@ services:
       - /var/www/storage/framework/views:uid=${USER_ID},gid=${GROUP_ID}
     volumes:
       - ./storage:/var/www/storage
-    env_file:
-      - .env
 
   web:
     image: biigle/web-dist
@@ -41,8 +39,6 @@ services:
       - cache
     volumes_from:
       - app
-    env_file:
-      - .env
     command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   scheduler:
@@ -53,8 +49,6 @@ services:
       - cache
     volumes_from:
       - app
-    env_file:
-      - .env
     command: "/bin/sh -c 'trap exit SIGTERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
