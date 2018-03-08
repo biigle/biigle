@@ -3,7 +3,7 @@ version: '2.3'
 services:
 
   app:
-    image: biigle/app-dist
+    image: biigle/app-dist:arm32v6
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:
@@ -14,7 +14,7 @@ services:
       - ./storage:/var/www/storage
 
   web:
-    image: biigle/web-dist
+    image: biigle/web-dist:arm32v6
     restart: always
     depends_on:
       - app
@@ -32,7 +32,7 @@ services:
       - 443:443
 
   worker:
-    image: biigle/worker-dist
+    image: biigle/worker-dist:arm32v6
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:
@@ -42,7 +42,7 @@ services:
     command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   scheduler:
-    image: biigle/worker-dist
+    image: biigle/worker-dist:arm32v6
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:

@@ -1,6 +1,6 @@
 # Run this in an intermediate container so the Compose cache is not contained in the
 # final image.
-FROM biigle/app AS intermediate
+FROM biigle/app:arm32v6 AS intermediate
 
 # Configure the timezone.
 ARG TIMEZONE

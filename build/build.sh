@@ -3,7 +3,7 @@ set -e
 
 source .env
 
-docker build -f app.dockerfile -t biigle/app-dist \
+docker build -f app.dockerfile -t biigle/app-dist:arm32v6 \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
     --build-arg GITHUB_OAUTH_TOKEN=${GITHUB_OAUTH_TOKEN} \
     --build-arg LABEL_TREES_VERSION="^1.0" \
@@ -27,9 +27,9 @@ if [ "$1" != "-s" ]; then
 fi
 
 # Perform these last because they uses the new biigle/app-dist as intermediate.
-docker build -f worker.dockerfile -t biigle/worker-dist \
+docker build -f worker.dockerfile -t biigle/worker-dist:arm32v6 \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
     .
-docker build -f web.dockerfile -t biigle/web-dist \
+docker build -f web.dockerfile -t biigle/web-dist:arm32v6 \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
     .
