@@ -91,7 +91,7 @@ RUN php /var/www/artisan config:cache && rm /var/www/.env
 
 # --- END intermediate ---
 
-FROM biigle/app
+FROM biigle/app:arm32v6
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 ARG TIMEZONE
