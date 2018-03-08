@@ -21,7 +21,7 @@ docker build -f app.dockerfile -t biigle/app-dist:arm32v6 \
 # Use -s to skip updating the cache.
 if [ "$1" != "-s" ]; then
     # Update the composer cache directory for faster builds.
-    ID=$(docker create biigle/app-dist)
+    ID=$(docker create biigle/app-dist:arm32v6)
     docker cp ${ID}:/root/.composer/cache .
     docker rm ${ID}
 fi
