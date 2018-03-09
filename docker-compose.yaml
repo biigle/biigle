@@ -1,4 +1,4 @@
-version: '2.3'
+version: '2.0'
 
 services:
 
@@ -19,14 +19,8 @@ services:
     depends_on:
       - app
     volumes:
-      - type: bind
-        source: ./certificate
-        target: /etc/letsencrypt/live/example.com
-        read_only: true
-      - type: bind
-        source: ./storage
-        target: /var/www/storage
-        read_only: true
+      - ./certificate:/etc/letsencrypt/live/example.com
+      - ./storage:/var/www/storage
     ports:
       - 80:80
       - 443:443
