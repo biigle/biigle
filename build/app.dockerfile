@@ -1,6 +1,6 @@
 # Run this in an intermediate container so the Compose cache is not contained in the
 # final image.
-FROM biigle/app:arm32v6 AS intermediate
+FROM biigle/app:arm64v8 AS intermediate
 
 # Configure the timezone.
 ARG TIMEZONE
@@ -91,7 +91,7 @@ RUN php /var/www/artisan config:cache && rm /var/www/.env
 
 # --- END intermediate ---
 
-FROM biigle/app:arm32v6
+FROM biigle/app:arm64v8
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 ARG TIMEZONE

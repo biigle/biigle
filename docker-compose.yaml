@@ -3,7 +3,7 @@ version: '2.0'
 services:
 
   app:
-    image: biigle/app-dist:arm32v6
+    image: biigle/app-dist:arm64v8
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:
@@ -14,7 +14,7 @@ services:
       - ./storage:/var/www/storage
 
   web:
-    image: biigle/web-dist:arm32v6
+    image: biigle/web-dist:arm64v8
     restart: always
     depends_on:
       - app
@@ -26,7 +26,7 @@ services:
       - 443:443
 
   worker:
-    image: biigle/worker-dist:arm32v6
+    image: biigle/worker-dist:arm64v8
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:
@@ -36,7 +36,7 @@ services:
     command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   scheduler:
-    image: biigle/worker-dist:arm32v6
+    image: biigle/worker-dist:arm64v8
     user: ${USER_ID}:${GROUP_ID}
     restart: always
     depends_on:
@@ -46,7 +46,7 @@ services:
     command: "/bin/sh -c 'trap exit SIGTERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
-    image: arm32v6/postgres:10-alpine
+    image: arm64v8/postgres:10-alpine
     restart: always
     volumes:
       - dbdata:/var/lib/postgresql
@@ -56,7 +56,7 @@ services:
       - "POSTGRES_PASSWORD=secret"
 
   cache:
-    image: arm32v6/redis:3.2-alpine
+    image: arm64v8/redis:3.2-alpine
     restart: always
 
 volumes:

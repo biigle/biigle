@@ -1,6 +1,6 @@
-FROM biigle/app-dist:arm32v6 as intermediate
+FROM biigle/app-dist:arm64v8 as intermediate
 
-FROM biigle/web:arm32v6
+FROM biigle/web:arm64v8
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 ARG TIMEZONE
