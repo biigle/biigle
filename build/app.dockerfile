@@ -47,17 +47,17 @@ ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php composer.phar require \
-    biigle/projects:${PROJECTS_VERSION} \
-    biigle/label-trees:${LABEL_TREES_VERSION} \
-    biigle/volumes:${VOLUMES_VERSION} \
-    biigle/annotations:${ANNOTATIONS_VERSION} \
-    biigle/largo:${LARGO_VERSION} \
-    biigle/export:${EXPORT_VERSION} \
-    biigle/geo:${GEO_VERSION} \
-    biigle/color-sort:${COLOR_SORT_VERSION} \
-    biigle/laserpoints:${LASERPOINTS_VERSION} \
-    biigle/ananas:${ANANAS_VERSION} \
-    --prefer-dist --update-no-dev --ignore-platform-reqs
+        biigle/projects:${PROJECTS_VERSION} \
+        biigle/label-trees:${LABEL_TREES_VERSION} \
+        biigle/volumes:${VOLUMES_VERSION} \
+        biigle/annotations:${ANNOTATIONS_VERSION} \
+        biigle/largo:${LARGO_VERSION} \
+        biigle/export:${EXPORT_VERSION} \
+        biigle/geo:${GEO_VERSION} \
+        biigle/color-sort:${COLOR_SORT_VERSION} \
+        biigle/laserpoints:${LASERPOINTS_VERSION} \
+        biigle/ananas:${ANANAS_VERSION} \
+        --prefer-dist --update-no-dev --ignore-platform-reqs
 
 RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\\ProjectsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\LabelTrees\\LabelTreesServiceProvider::class,' config/app.php \
@@ -70,16 +70,7 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php
 
-RUN php artisan projects:publish \
-    && php artisan label-trees:publish \
-    && php artisan volumes:publish \
-    && php artisan annotations:publish \
-    && php artisan largo:publish \
-    && php artisan export:publish \
-    && php artisan geo:publish \
-    && php artisan color-sort:publish \
-    && php artisan laserpoints:publish \
-    && php artisan ananas:publish
+RUN php artisan vendor:publish --tag=public
 
 RUN php composer.phar dump-autoload -o \
     && rm composer.phar
