@@ -14,6 +14,12 @@ Perform these steps on the machine that should run BIIGLE.
    $ id -g biigle
    <group_id>
    ```
+
+2. Change the owner of the `storage` directory:
+   ```bash
+   $ sudo chown -R biigle:biigle storage/
+   ```
+
 2. Move `.env.example` to `.env`.
 
 3. Now set the configuration variables in `.env`:
