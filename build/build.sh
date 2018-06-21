@@ -3,6 +3,8 @@ set -e
 
 source .env
 
+VERSION=${1:-latest}
+
 # This is the image which is used during build only. It stores and updates the
 # Composer cache which should not be included in the production images.
 # It serves as an intermediate base image for the app, worker and web images.
@@ -23,12 +25,10 @@ docker build -f build.dockerfile -t biigle/build-dist \
 
 # Update the composer cache directory for much faster builds.
 # Use -s to skip updating the cache directory.
-if [ "$1" != "-s" ]; then
-    ID=$(docker create biigle/build-dist)
-    docker cp ${ID}:/root/.composer/cache .
-    docker rm ${ID}
-fi
+ID=$(docker create biigle/build-dist)
+docker cp ${ID}:/root/.composer/cache .
+docker rm ${ID}
 
-docker build -f app.dockerfile -t biigle/app-dist .
-docker build -f worker.dockerfile -t biigle/worker-dist .
-docker build -f web.dockerfile -t biigle/web-dist .
+docker build -f app.dockerfile -t biigle/app-dist:$VERSION .
+docker build -f worker.dockerfile -t biigle/worker-dist:$VERSION .
+docker build -f web.dockerfile -t biigle/web-dist:$VERSION .
