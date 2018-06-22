@@ -21,6 +21,7 @@ docker build -f build.dockerfile -t biigle/build-dist:arm64v8 \
     --build-arg COLOR_SORT_VERSION="^2.0" \
     --build-arg LASERPOINTS_VERSION="^2.0" \
     --build-arg ANANAS_VERSION="^1.0" \
+    --build-arg SYNC_VERSION="^1.2" \
     .
 
 # Update the composer cache directory for much faster builds.
