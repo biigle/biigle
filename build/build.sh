@@ -26,7 +26,7 @@ docker build -f build.dockerfile -t biigle/build-dist:arm64v8 \
 
 # Update the composer cache directory for much faster builds.
 # Use -s to skip updating the cache directory.
-ID=$(docker create biigle/build-dist)
+ID=$(docker create biigle/build-dist:arm64v8)
 docker cp ${ID}:/root/.composer/cache .
 docker rm ${ID}
 
