@@ -14,6 +14,12 @@ Perform these steps on the machine that should run BIIGLE.
    $ id -g biigle
    <group_id>
    ```
+
+2. Change the owner of the `storage` directory:
+   ```bash
+   $ sudo chown -R biigle:biigle storage/
+   ```
+
 2. Move `.env.example` to `.env`.
 
 3. Now set the configuration variables in `.env`:
@@ -34,7 +40,7 @@ Perform these steps on the machine that should run BIIGLE.
 
 5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`.
 
-6. Now build the Docker images for production: `cd build && ./build.sh`. You can build the images on a separate machine, too, and transfer them to the production machine using [`docker save`](https://docs.docker.com/engine/reference/commandline/save/) and [`docker load`](https://docs.docker.com/engine/reference/commandline/load/).
+6. Now build the Docker images for production: `cd build && ./build.sh`. You can build the images on a separate machine, too, and transfer them to the production machine using [`docker save`](https://docs.docker.com/engine/reference/commandline/save/) and [`docker load`](https://docs.docker.com/engine/reference/commandline/load/). `build.sh` also supports an optional argument to specify the version tag of the Docker containers to build (e.g. `v2.8.0`). Default is `latest`.
 
 7. Go back and run the containers: `cd .. && docker-compose up -d`.
 
