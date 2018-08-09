@@ -36,7 +36,7 @@ Perform these steps on the machine that should run BIIGLE.
    - `APP_URL` is `https://<your_domain>`.
    - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
 
-4. If you use an external database system (as is recommended), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `build/.env`.
+4. If you use an external database system (outside Docker), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `build/.env`.
 
 5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`.
 

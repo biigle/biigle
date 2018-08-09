@@ -55,7 +55,7 @@ services:
     image: postgres:9.4-alpine
     restart: always
     volumes:
-      - dbdata:/var/lib/postgresql
+      - dbdata:/var/lib/postgresql/data
     environment:
       - "POSTGRES_DB=homestead"
       - "POSTGRES_USER=homestead"
