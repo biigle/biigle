@@ -57,8 +57,8 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
     environment:
-      - "POSTGRES_DB=homestead"
-      - "POSTGRES_USER=homestead"
+      - "POSTGRES_DB=biigle"
+      - "POSTGRES_USER=biigle"
       - "POSTGRES_PASSWORD=secret"
 
   cache:
