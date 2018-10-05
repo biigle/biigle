@@ -57,7 +57,10 @@ Perform these steps on the machine that should run BIIGLE.
 
 3. If the update requires a database migration, do this:
    1. Put the application in maintenance mode: `docker-compose exec app php artisan down`.
-   2. Do a database backup. This might look along the lines of: `pg_dump -h localhost -U biigle_user -d biigle_db > biigle_db.dump`
+   2. Do a database backup. This might look along the lines of:
+      ```bash
+      docker exec -i $(docker-compose ps -q database) pg_dump -U biigle -d biigle > biigle_db.dump
+      ```
 
 4. Update the running Docker containers: `docker-compose up -d`.
 
