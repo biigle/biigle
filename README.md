@@ -64,3 +64,58 @@ Perform these steps on the machine that should run BIIGLE.
 5. If the update requires a database migration, do this:
    1. Run the migrations `docker-compose exec app php artisan migrate`
    2. Turn off the maintenance mode: `docker-compose exec app php artisan up`
+
+6. Run `docker image prune` to delete old Docker images that are no longer required after the update.
+
+## Common tasks
+
+BIIGLE runs as an ensemble of multiple Docker containers (called "services" by Docker Compose).
+
+- `app` runs the BIIGLE PHP application that handles user interactions.
+- `web` accepts HTTP requests, forwards them to the PHP application or serves static files.
+- `worker` executes jobs from the asynchronous queue which are submitted by `app`. This is the only service that runs multiple Docker containers in parallel.
+- `scheduler` runs recurring tasks (similar to cron jobs).
+- `cache` provides the Redis cache that BIIGLE uses.
+- `database` provides the PostgreSQL database that BIIGLE uses.
+
+To interact with these services rather than individual Docker containers, you have to use Docker Compose. Here are some common tasks a maintainer of a BIIGLE instance might perform using Docker Compose.
+
+### Inspect the logs of running containers
+
+```bash
+docker-compose logs [service]
+```
+
+This shows the log file of the `[service]` service. You can use `--tail=[n]` to show only the last `[n]` lines of the log file and `-f` to follow the log file in real time.
+
+### Restart all services
+
+```bash
+docker-compose restart
+```
+
+This may be required if a service crashed or if file system mounts changed.
+
+### Run an artisan command
+
+```bash
+docker-compose exec app php artisan [command]
+```
+
+This runs the artisan command `[command]` in the application service.
+
+### Access the interactive shell
+
+```bash
+docker-compose exec worker php artisan tinker
+```
+
+This opens the interactive PHP shell that you can use to manipulate BIIGLE. The shell only runs in the `worker` service as a debugging mechanism.
+
+### Change the number of worker containers
+
+```bash
+docker-compose up -d --scale worker=[n]
+```
+
+Set the number of worker containers running in parallel to `[n]`. If you want this to persist, set `scale: [n]` for the worker service in `docker-compose.yaml`.
