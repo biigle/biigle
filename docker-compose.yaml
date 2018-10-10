@@ -52,7 +52,7 @@ services:
     command: "/bin/sh -c 'trap exit SIGTERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
-    image: postgres:9.4-alpine
+    image: postgres:10-alpine
     restart: always
     volumes:
       - dbdata:/var/lib/postgresql/data
