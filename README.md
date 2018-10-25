@@ -45,9 +45,9 @@ Perform these steps on the machine that should run BIIGLE.
 
 7. Go back and run the containers: `cd .. && docker-compose up -d`.
 
-8. Apply the database migrations: `docker-compose exec app php artisan migrate`.
+8. Apply the database migrations: `./artisan migrate`.
 
-9. Create the first user: `docker-compose exec app php artisan user:new`.
+9. Create the first user: `./artisan user:new`.
 
 ## Updating
 
@@ -56,7 +56,7 @@ Perform these steps on the machine that should run BIIGLE.
 2. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
 
 3. If the update requires a database migration, do this:
-   1. Put the application in maintenance mode: `docker-compose exec app php artisan down`.
+   1. Put the application in maintenance mode: `./artisan down`.
    2. Do a database backup. This might look along the lines of:
       ```bash
       docker exec -i $(docker-compose ps -q database) pg_dump -U biigle -d biigle > biigle_db.dump
@@ -65,8 +65,8 @@ Perform these steps on the machine that should run BIIGLE.
 4. Update the running Docker containers: `docker-compose up -d`.
 
 5. If the update requires a database migration, do this:
-   1. Run the migrations `docker-compose exec app php artisan migrate`
-   2. Turn off the maintenance mode: `docker-compose exec app php artisan up`
+   1. Run the migrations `./artisan migrate`
+   2. Turn off the maintenance mode: `./artisan up`
 
 6. Run `docker image prune` to delete old Docker images that are no longer required after the update.
 
@@ -102,15 +102,15 @@ This may be required if a service crashed or if file system mounts changed.
 ### Run an artisan command
 
 ```bash
-docker-compose exec app php artisan [command]
+./artisan [command]
 ```
 
-This runs the artisan command `[command]` in the application service.
+This runs the artisan command `[command]` in the worker service.
 
 ### Access the interactive shell
 
 ```bash
-docker-compose exec worker php artisan tinker
+./artisan tinker
 ```
 
 This opens the interactive PHP shell that you can use to manipulate BIIGLE. The shell only runs in the `worker` service as a debugging mechanism.
