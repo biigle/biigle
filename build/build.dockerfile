@@ -8,6 +8,10 @@ RUN apk add --no-cache tzdata \
     && echo "${TIMEZONE}" > /etc/timezone \
     && apk del tzdata
 
+# Required to generate the REST API documentation.
+RUN apk add --no-cache npm \
+    && npm install apidoc@"^0.17.0" -g
+
 # Ignore platform reqs because the app image is stripped down to the essentials
 # and doens't meet some of the requirements. We do this for the worker, though.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
@@ -76,6 +80,8 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\
 RUN php composer.phar dump-autoload -o && rm composer.phar
 
 RUN php artisan vendor:publish --tag=public
+# Generate the REST API documentation.
+RUN cd /var/www && php artisan apidoc
 
 RUN php /var/www/artisan route:cache
 
