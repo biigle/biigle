@@ -81,7 +81,7 @@ RUN php composer.phar dump-autoload -o && rm composer.phar
 
 RUN php artisan vendor:publish --tag=public
 # Generate the REST API documentation.
-RUN cd /var/www && php artisan apidoc
+RUN cd /var/www && php artisan apidoc &> /dev/null
 
 RUN php /var/www/artisan route:cache
 
