@@ -35,7 +35,6 @@ Perform these steps on the machine that should run BIIGLE.
    - `APP_KEY` is the secret encryption key. Generate one with: `head -c 32 /dev/urandom | base64`. Then set `APP_KEY=base64:<your_key>`.
    - `APP_URL` is `https://<your_domain>`.
    - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
-   - `LASER_POINT_LABEL_ID` the ID of the (future) global laser point label
 
 4. If you use an external database system (outside Docker), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `build/.env`.
 
