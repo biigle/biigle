@@ -83,6 +83,9 @@ RUN php artisan vendor:publish --tag=public
 # Generate the REST API documentation.
 RUN cd /var/www && php artisan apidoc &> /dev/null
 
+# Add custom configs.
+COPY config/filesystems.php /var/www/config/filesystems.php
+
 RUN php /var/www/artisan route:cache
 
 COPY .env /var/www/.env
