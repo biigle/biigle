@@ -33,3 +33,5 @@ docker rm ${ID}
 docker build -f app.dockerfile -t biigle/app-dist:$VERSION .
 docker build -f worker.dockerfile -t biigle/worker-dist:$VERSION .
 docker build -f web.dockerfile -t biigle/web-dist:$VERSION .
+
+docker image prune -f
