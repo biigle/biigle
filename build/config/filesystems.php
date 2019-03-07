@@ -74,6 +74,11 @@ return [
             'root' => storage_path('reports'),
         ],
 
+        'geo-overlays' => [
+            'driver' => 'local',
+            'root' => storage_path('geo-overlays'),
+        ],
+
     ],
 
 ];
