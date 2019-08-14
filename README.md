@@ -1,6 +1,6 @@
 # BIIGLE Distribution
 
-This is the production setup of BIIGLE.
+This is the production setup of BIIGLE. You can fork this repository to customize your own production instance.
 
 ## Installation
 
