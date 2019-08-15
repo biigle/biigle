@@ -4,7 +4,7 @@ This is the production setup of BIIGLE. You can fork this repository to customiz
 
 ## Installation
 
-Perform these steps on the machine that should run BIIGLE.
+Perform these steps on the machine that should run BIIGLE. Check out the wiki for an [example](https://github.com/biigle/distribution/wiki) of how to prepare a new machine for the installation of BIIGLE.
 
 1. Create a user for BIIGLE and find out the user and group ID:
    ```bash
