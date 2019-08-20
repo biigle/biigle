@@ -50,7 +50,12 @@ Perform these steps on the machine that should run BIIGLE.
 
 ## Updating
 
-1. Get the newest versions of the `biigle/app`, `biigle/web` and `biigle/worker` images.
+1. Get the newest versions of the Docker images:
+   ```
+   docker pull docker.pkg.github.com/biigle/core/app:latest
+   docker pull docker.pkg.github.com/biigle/core/web:latest
+   docker pull docker.pkg.github.com/biigle/core/worker:latest
+   ```
 
 2. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
 

@@ -1,4 +1,4 @@
-FROM biigle/app
+FROM docker.pkg.github.com/biigle/core/app:latest
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 # Configure the timezone.
