@@ -30,6 +30,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    # Uncomment to use the webserver without SSL:
+    # command: nginx -g 'daemon off;' -c /etc/nginx/nginx-no-ssl.conf
 
   worker:
     image: biigle/worker-dist
