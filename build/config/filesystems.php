@@ -81,6 +81,16 @@ return [
             'root' => storage_path('geo-overlays'),
         ],
 
+        'imports' => [
+            'driver' => 'local',
+            'root' => storage_path('imports'),
+        ],
+
+        'laserpoints' => [
+            'driver' => 'local',
+            'root' => storage_path('framework/cache/laserpoints'),
+        ],
+
     ],
 
 ];
