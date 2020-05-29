@@ -38,6 +38,7 @@ ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
 ARG SYNC_VERSION=">=1.0"
+ARG VIDEOS_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php composer.phar require \
         biigle/projects:${PROJECTS_VERSION} \
@@ -51,6 +52,7 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/laserpoints:${LASERPOINTS_VERSION} \
         biigle/ananas:${ANANAS_VERSION} \
         biigle/sync:${SYNC_VERSION} \
+        biigle/videos:${VIDEOS_VERSION} \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
 RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\\ProjectsServiceProvider::class,' config/app.php \
@@ -63,6 +65,7 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\ColorSort\\ColorSortServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php \
+    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Videos\\VideosServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Sync\\SyncServiceProvider::class,' config/app.php
 
 RUN php composer.phar dump-autoload -o && rm composer.phar
