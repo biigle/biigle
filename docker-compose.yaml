@@ -29,7 +29,7 @@ services:
         read_only: true
     ports:
       - 80:80
-      - 443:443
+      - 443:443 # Remove for a setup without SSL
     # Uncomment to use the webserver without SSL:
     # command: nginx -g 'daemon off;' -c /etc/nginx/nginx-no-ssl.conf
 
