@@ -38,8 +38,7 @@ Perform these steps on the machine that should run BIIGLE. Check out the wiki fo
 
 4. If you use an external database system (outside Docker), remove the `database` block from `docker-compose.yaml` and configure the `DB_*` variables in `build/.env`.
 
-5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`. See [here](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) for a description of the required contents of the keychain file.
-   For a local setup no SSL certificate may be required. Update the `web` service in [docker-compose.yaml](docker-compose.yaml) as described by the comments in this case.
+5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`. See [here](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) for a description of the required contents of the keychain file. For a local setup no SSL certificate may be required. Update the `web` service in [`docker-compose.yaml`](docker-compose.yaml) as described by the comments in this case.
 
 6. Now build the Docker images for production: `cd build && ./build.sh`. You can build the images on a separate machine, too, and transfer them to the production machine using [`docker save`](https://docs.docker.com/engine/reference/commandline/save/) and [`docker load`](https://docs.docker.com/engine/reference/commandline/load/). `build.sh` also supports an optional argument to specify the version tag of the Docker containers to build (e.g. `v2.8.0`). Default is `latest`.
 
