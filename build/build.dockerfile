@@ -27,10 +27,6 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY cache /root/.composer/cache
 
 ARG GITHUB_OAUTH_TOKEN
-ARG PROJECTS_VERSION=">=1.0"
-ARG LABEL_TREES_VERSION=">=1.0"
-ARG VOLUMES_VERSION=">=1.0"
-ARG ANNOTATIONS_VERSION=">=1.0"
 ARG LARGO_VERSION=">=1.0"
 ARG REPORTS_VERSION=">=1.0"
 ARG GEO_VERSION=">=1.0"
@@ -38,13 +34,8 @@ ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
 ARG SYNC_VERSION=">=1.0"
-ARG VIDEOS_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php composer.phar require \
-        biigle/projects:${PROJECTS_VERSION} \
-        biigle/label-trees:${LABEL_TREES_VERSION} \
-        biigle/volumes:${VOLUMES_VERSION} \
-        biigle/annotations:${ANNOTATIONS_VERSION} \
         biigle/largo:${LARGO_VERSION} \
         biigle/reports:${REPORTS_VERSION} \
         biigle/geo:${GEO_VERSION} \
@@ -52,20 +43,14 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/laserpoints:${LASERPOINTS_VERSION} \
         biigle/ananas:${ANANAS_VERSION} \
         biigle/sync:${SYNC_VERSION} \
-        biigle/videos:${VIDEOS_VERSION} \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
-RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Projects\\ProjectsServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\LabelTrees\\LabelTreesServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Volumes\\VolumesServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Annotations\\AnnotationsServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\LargoServiceProvider::class,' config/app.php \
+RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\LargoServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Reports\\ReportsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Geo\\GeoServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\ColorSort\\ColorSortServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Videos\\VideosServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Sync\\SyncServiceProvider::class,' config/app.php
 
 RUN php composer.phar dump-autoload -o && rm composer.phar
