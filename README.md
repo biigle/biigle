@@ -50,29 +50,34 @@ Perform these steps on the machine that should run BIIGLE. Check out the wiki fo
 
 ## Updating
 
-1. Get the newest versions of the Docker images:
+1. Apply the latest changes from this repository with `git pull upstream master`. If this throws an error that 'upstream' does not appear to be a git repository, configure the upstream repository first:
+   ```
+   git remote add upstream https://github.com/biigle/distribution.git
+   ```
+
+2. Get the newest versions of the Docker images:
    ```
    docker pull docker.pkg.github.com/biigle/core/app:latest
    docker pull docker.pkg.github.com/biigle/core/web:latest
    docker pull docker.pkg.github.com/biigle/core/worker:latest
    ```
 
-2. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
+3. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
 
-3. If the update requires a database migration, do this:
+4. If the update requires a database migration, do this:
    1. Put the application in maintenance mode: `./artisan down`.
    2. Do a database backup. This might look along the lines of:
       ```bash
       docker exec -i $(docker-compose ps -q database) pg_dump -U biigle -d biigle > biigle_db.dump
       ```
 
-4. Update the running Docker containers: `docker-compose up -d`.
+5. Update the running Docker containers: `docker-compose up -d`.
 
-5. If the update requires a database migration, do this:
+6. If the update requires a database migration, do this:
    1. Run the migrations `./artisan migrate`
    2. Turn off the maintenance mode: `./artisan up`
 
-6. Run `docker image prune` to delete old Docker images that are no longer required after the update.
+7. Run `docker image prune` to delete old Docker images that are no longer required after the update.
 
 ## Common tasks
 
