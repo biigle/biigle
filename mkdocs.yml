@@ -1,0 +1,23 @@
+site_name: BIIGLE Admin Documentation
+site_description: This is a collection of resources and documentation for maintainers of an instance of BIIGLE, the image and video annotation tool.
+site_author: Martin Zurowietz
+site_url: https://github.com/biigle/distribution/
+repo_url: https://github.com/biigle/distribution/
+edit_uri: blob/master/docs/
+theme:
+    name: readthedocs
+    highlightjs: false
+markdown_extensions:
+    - toc:
+        permalink: 
+    - admonition:
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Maintenance: maintenance.md
+  - GPU computing: gpu.md
+  # - Federated search: federated-search.md
+  - Appendix:
+    - GPU setup: appendix/gpu-setup.md
+    - queue.php (same host): appendix/queue.php.md
+    - queue.php (remote host): appendix/queue2.php.md
