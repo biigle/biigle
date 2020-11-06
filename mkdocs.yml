@@ -17,6 +17,11 @@ nav:
   - Maintenance: maintenance.md
   - GPU computing: gpu.md
   # - Federated search: federated-search.md
+  - Module development:
+    - Module development: module-development/module-development.md
+    - Advanced module development: module-development/advanced-module-development.md
+    - Custom assets of modules: module-development/custom-assets.md
+    - Mastering view mixins: module-development/view-mixins.md
   - Appendix:
     - GPU setup: appendix/gpu-setup.md
     - queue.php (same host): appendix/queue.php.md
