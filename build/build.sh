@@ -18,6 +18,7 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg LASERPOINTS_VERSION="^2.0" \
     --build-arg ANANAS_VERSION="^1.0" \
     --build-arg SYNC_VERSION="^2.0" \
+    --build-arg MAIA_VERSION="^1.0" \
     .
 
 # Update the composer cache directory for much faster builds.
@@ -29,5 +30,6 @@ docker rm ${ID}
 docker build -f app.dockerfile -t biigle/app-dist:$VERSION .
 docker build -f worker.dockerfile -t biigle/worker-dist:$VERSION .
 docker build -f web.dockerfile -t biigle/web-dist:$VERSION .
+docker build -f gpu-worker.dockerfile -t biigle/gpu-worker-dist:$VERSION .
 
 docker image prune -f

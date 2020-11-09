@@ -43,6 +43,7 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/laserpoints:${LASERPOINTS_VERSION} \
         biigle/ananas:${ANANAS_VERSION} \
         biigle/sync:${SYNC_VERSION} \
+        biigle/maia:${MAIA_VERSION} \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
 RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\LargoServiceProvider::class,' config/app.php \
@@ -51,7 +52,8 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\La
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\ColorSort\\ColorSortServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Sync\\SyncServiceProvider::class,' config/app.php
+    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Sync\\SyncServiceProvider::class,' config/app.php \
+    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Maia\\MaiaServiceProvider::class,' config/app.php
 
 RUN php composer.phar dump-autoload -o && rm composer.phar
 
@@ -66,6 +68,7 @@ RUN curl -O http://get.sensiolabs.org/sami.phar \
 
 # Add custom configs.
 COPY config/filesystems.php /var/www/config/filesystems.php
+COPY config/queue.php /var/www/config/queue.php
 
 RUN php /var/www/artisan route:cache
 
