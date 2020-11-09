@@ -1,8 +1,8 @@
 site_name: BIIGLE Admin Documentation
 site_description: This is a collection of resources and documentation for maintainers of an instance of BIIGLE, the image and video annotation tool.
 site_author: Martin Zurowietz
-site_url: https://github.com/biigle/distribution/
-repo_url: https://github.com/biigle/distribution/
+site_url: https://github.com/biigle/biigle/
+repo_url: https://github.com/biigle/biigle/
 edit_uri: blob/master/docs/
 theme:
     name: readthedocs

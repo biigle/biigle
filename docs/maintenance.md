@@ -6,9 +6,9 @@ This guide describes how basic maintenance operations such as updates of a BIIGL
 
 Perform these steps to update an existing BIIGLE instance.
 
-1. Apply the latest changes from the [`biigle/distribution`](https://github.com/biigle/distribution) repository with `git pull upstream master`. If this throws an error that 'upstream' does not appear to be a git repository, configure the upstream repository first:
+1. Apply the latest changes from the [`biigle/biigle`](https://github.com/biigle/biigle) repository with `git pull upstream master`. If this throws an error that 'upstream' does not appear to be a git repository, configure the upstream repository first:
 
-        $ git remote add upstream https://github.com/biigle/distribution.git
+        $ git remote add upstream https://github.com/biigle/biigle.git
 
 
 2. Get the newest versions of the Docker images:
