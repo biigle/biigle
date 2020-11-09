@@ -18,7 +18,7 @@ nav:
   - GPU computing: gpu.md
   # - Synchronization: sync.md
   - Federated search: federated-search.md
-  # - Database schema: database-schema.md
+  - Database schema: database-schema.md
   - Module development:
     - Module development: module-development/module-development.md
     - Advanced module development: module-development/advanced-module-development.md
