@@ -16,7 +16,7 @@ nav:
   - Installation: installation.md
   - Maintenance: maintenance.md
   - GPU computing: gpu.md
-  # - Synchronization: sync.md
+  - Synchronization: sync.md
   - Federated search: federated-search.md
   - Database schema: database-schema.md
   - Module development:
