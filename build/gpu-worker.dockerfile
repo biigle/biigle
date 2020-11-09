@@ -20,7 +20,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
 # Set this library path to the Python modules are linked correctly.
 # See: https://github.com/python-pillow/Pillow/issues/1763#issuecomment-204252397
 ENV LIBRARY_PATH=/lib:/usr/lib
-COPY .docker/requirements.txt /tmp/requirements.txt
+COPY requirements.txt /tmp/requirements.txt
 # Install Python dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
