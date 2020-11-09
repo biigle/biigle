@@ -1,6 +1,6 @@
 FROM biigle/build-dist:arm64v8 AS intermediate
 
-FROM biigle/worker:arm64v8
+FROM docker.pkg.github.com/biigle/core/worker:arm64v8
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 COPY --from=intermediate /etc/localtime /etc/localtime
