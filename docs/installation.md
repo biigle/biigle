@@ -9,7 +9,7 @@ This is an example setup of a machine that should run BIIGLE. It is based on a c
 
 1. Run `sudo apt update && sudo apt upgrade`.
 
-2. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository). If you are in a cloud environment, add the respository like this so it is not deleted when a new machine is booted:
+2. [Install Docker](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository). If you are in a cloud environment, add the repository like this so it is not deleted when a new machine is booted:
 
         echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
             $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
