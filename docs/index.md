@@ -1,4 +1,4 @@
-# BIIGLE Admin Documentation
+# BIIGLE admin documentation
 
 This is a collection of resources and documentation for maintainers of an instance of [BIIGLE](https://github.com/biigle), the image and video annotation tool.
 
