@@ -37,7 +37,7 @@ The <code>composer.json</code> is also used for developing new packages (similar
 
 First, the name of the package is defined as <code>biigle/annotations</code>. Packages are always namespaced like this, identifying the developer in the first part and the name of the package in the second. In this case the developer is <code>biigle</code> because the annotations package is developed by the BIIGLE core team. For your own packages you might want to use your name or the name of your organization.
 
-Second, the dependencies of the package are delcared. Here, the annotations package requires the <code>biigle/volumes</code> package (since otherwise there is no way reaching the annotation tool, but it can have other reasons, too).
+Second, the dependencies of the package are declared. Here, the annotations package requires the <code>biigle/volumes</code> package (since otherwise there is no way reaching the annotation tool, but it can have other reasons, too).
 
 Last, the namespace of the PHP classes of this package is defined. The <code>autoload</code> section of this configuration tells composer that every file it finds in the <code>src</code> directory belongs to the <code>Biigle\Modules\Annotations</code> namespace. Any further namespacing inside of this namespace is reflected by the directory structure in <code>src</code>.
 
@@ -89,6 +89,7 @@ Normally you would start implementing now, but our new module still lacks a few 
 ### Service provider
 
 Each package for Laravel contains one or more <a href="http://laravel.com/docs/5.5/providers">service provider</a> classes. These classes, among other things, tell Laravel where to find the package configuration, views or translation files. So let's create a file called <code>src/QuotesServiceProvider.php</code> with the following content:
+
 <pre><code>&lt;?php
 
 namespace Biigle\Modules\Quotes;
@@ -188,7 +189,7 @@ First, we have to create a new view of the module, containing the code of the ne
 &lt;/div&gt;
 </code></pre>
 
-You see that we can use the entire pallette of <a href="https://getbootstrap.com/docs/3.4/">Bootstrap 3</a> classes for styling without having to set anything up. The actual quote is echoed using the <code>@{{&nbsp;}}</code> control structure of the Laravel <a href="https://laravel.com/docs/5.5/blade">Blade templating engine</a>.
+You see that we can use the entire palette of <a href="https://getbootstrap.com/docs/3.4/">Bootstrap 3</a> classes for styling without having to set anything up. The actual quote is echoed using the <code>@{{&nbsp;}}</code> control structure of the Laravel <a href="https://laravel.com/docs/5.5/blade">Blade templating engine</a>.
 
 Calling the new view <code>dashboardMain.blade.php</code> is essential here, since the view has to have the same name as the identifier of registered space for view mixins. Usually views only register one such space so taking the view name as identifier makes sense. For the dashboard, the ID is <code>dashboardMain</code> so our view mixin must be called <code>dashboardMain</code>, too.
 
@@ -201,6 +202,7 @@ $this->loadViewsFrom(__DIR__.'/resources/views', 'quotes');
 This tells Laravel to look for views of the <code>quotes</code> module in the previously created directory. The <code>'quotes'</code> part is the namespace for views of our module; you'll see that in action when we add the first real view in the advanced tutorial.
 
 In addition to registering the views, we need to register our view mixin. For this, we need to inject the <code>Biigle\Services\Modules</code> class in the <code>boot</code> function. To keep things simple, here is how the service provider class should look like:
+
 <pre><code>&lt;?php
 
 namespace Biigle\Modules\Quotes;

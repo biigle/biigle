@@ -205,7 +205,7 @@ Time: 762 ms, Memory: 42.00 MB
 OK (1 test, 1 assertion)
 ```
 
-Neat! You can now call the <code>quotes</code> route in your BIIGLE application whithout causing any errors. But wait, shouldn't the route have restricted access? If the user is not logged in, they should be redirected to the login page instead of seeing the quotes. Let's adjust our test:
+Neat! You can now call the <code>quotes</code> route in your BIIGLE application without causing any errors. But wait, shouldn't the route have restricted access? If the user is not logged in, they should be redirected to the login page instead of seeing the quotes. Let's adjust our test:
 <pre><code>&lt;?php
 
 namespace Biigle\Tests\Modules\Quotes\Http\Controllers;
@@ -256,6 +256,7 @@ That was it. The <code>auth</code> middleware takes care of checking for authent
 ## A new view
 
 While the route and authentication works, there still is no content on our page. From the previous tutorial we already know how to implement a view, so let's create <code>src/resources/views/index.blade.php</code>:
+
 <pre><code>&lt;blockquote&gt;
     @{{ Illuminate\Foundation\Inspiring::quote() }}
 &lt;/blockquote&gt;
@@ -278,6 +279,7 @@ Pretty ugly, isn't it? The view doesn't look like the other BIIGLE views at all.
 
 The BIIGLE core application has an <code>app</code> view template containing all the scaffolding of a HTML page and loading the default assets. This <code>app</code> template is what makes all BIIGLE views look alike.
 The Blade templating engine allows for view inheritance so you can create new views, building upon existing ones. When inheriting a view, you need to specify view <em>sections</em>, defining which part of the new view should be inserted into which part of the parent view. Let's see this in action by applying it to the <code>index.blade.php</code> view of our module:
+
 <pre><code>&#64;extends('app')
 &#64;section('title', 'Inspiring quotes')
     &#64;section('content')
@@ -296,6 +298,7 @@ Here we tell the templating engine that our view should extend the <code>app</co
 Take a look at the page again. Now we are talking!
 
 To finish up, we quickly add a link to the new route to the previously developed view mixin of the dashboard. Open the <code>dashboardMain</code> view and edit the panel heading:
+
 <pre><code>&lt;div class="panel-heading"&gt;
     &lt;a href="@{{ route('quotes') }}"&gt;&lt;h3 class="panel-title"&gt;Inspiring Quote&lt;/h3&gt;&lt;/a&gt;
 &lt;/div&gt;

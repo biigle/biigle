@@ -7,7 +7,7 @@ In previous tutorials on module development you've always used assets provided b
 
 ## What's already there
 
-The BIIGLE frontend is built upon two frameworks, <a href="http://getbootstrap.com/docs/3.4/">Bootstrap 3</a> for CSS and <a href="https://vuejs.org/">Vue.js</a> (exdended with the <a href="https://github.com/pagekit/vue-resource">vue-resource</a> plugin) for JavaScript. Using <a href="https://github.com/biigle/vue-strap">vue-strap</a> you can use <a href="https://github.com/biigle/vue-strap/blob/v2/src/index.js">some</a> interactive components of Bootstrap, too.
+The BIIGLE frontend is built upon two frameworks, <a href="http://getbootstrap.com/docs/3.4/">Bootstrap 3</a> for CSS and <a href="https://vuejs.org/">Vue.js</a> (extended with the <a href="https://github.com/pagekit/vue-resource">vue-resource</a> plugin) for JavaScript. Using <a href="https://github.com/biigle/vue-strap">vue-strap</a> you can use <a href="https://github.com/biigle/vue-strap/blob/v2/src/index.js">some</a> interactive components of Bootstrap, too.
 
 In addition to the basic frameworks, the BIIGLE core application also provides Vue components and other objects e.g. for easy interaction with the RESTful API.
 
@@ -26,6 +26,7 @@ To show you how to use the provided JavaScript codebase and how to extend it wit
 To give an example on how to use the provided codebase we would like our refresh button to simply display a user feedback message through the integrated messaging system first, without interacting with the backend. This will show you how to add core BIIGLE code as a dependency to your custom Vue.js components.
 
 To add custom JavaScript to a view, we need to add to the scripts section of the base <code>app</code> template. The scripts are usually located at the bottom of a page body so if we wanted to use the default assets already in the <code>content</code> section of the template it wouldn't work. To append our JavaScript to the scripts section, add the following to the <code>index.blade.php</code> template of our <code>quotes</code> module:
+
 <pre><code>&#64;push('scripts')
 &lt;script type="text/javascript"&gt;
    // your script goes here
@@ -54,6 +55,7 @@ The <code>$require</code> function returns an object that has been registered us
 The script above creates a new Vue instance when a DOM element with ID <code>quotes-container</code> is encountered. It also uses the object that has been registered as <code>messages</code>. The Vue instance has a single method which calls the <code>info</code> function of the messages object.
 
 Let's edit the <code>content</code> section of our quotes view to connect the <code>refreshQuote</code> function with a button and see if everything works:
+
 <pre><code>&lt;div id="quotes-container" class="container"&gt;
    &lt;div class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3"&gt;
       &lt;blockquote&gt;
@@ -169,6 +171,7 @@ biigle.$mount('quotes-container', {
 We now use the <code>$http.get</code> function of vue-resource to call the new <code>quotes/new</code> route whenever the refresh button is clicked. The response is written to the reactive property <code>quote</code>. If the response is an error, the <code>handleErrorResponse</code> function of the messages object is used to do error handling. In addition to the click on the button, the quote is also initially refreshed when the Vue instance is created.
 
 Finally, we have to rewire the view a little bit to display the dynamically loaded quote. To do so, replace the old <code>blockquote</code> element by this one:
+
 <pre><code>&lt;blockquote v-text="quote"&gt;&lt;/blockquote&gt;
 </code></pre>
 
