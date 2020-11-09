@@ -26,5 +26,3 @@ nav:
     - Mastering view mixins: module-development/view-mixins.md
   - Appendix:
     - GPU setup: appendix/gpu-setup.md
-    - queue.php (same host): appendix/queue.php.md
-    - queue.php (remote host): appendix/queue2.php.md
