@@ -27,10 +27,7 @@ Now you can follow the installation instructions below to install BIIGLE on the 
 
 Perform these steps on the machine that should run BIIGLE.
 
-!!! warning "Important"
-    Configure Docker to authenticate to the [GitHub package registry](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-docker-for-use-with-github-packages#authenticating-to-github-packages) before you continue.
-
-1. Clone the [`biigle/distribution`](https://github.com/biigle/distribution) repository to the directory where BIIGLE should be installed (e.g. `/mnt/biigle` or `/var/biigle`).
+1. Clone the [`biigle/biigle`](https://github.com/biigle/biigle) repository to the directory where BIIGLE should be installed (e.g. `/mnt/biigle` or `/var/biigle`).
 
 1. Create a user for BIIGLE and find out the user and group ID:
 

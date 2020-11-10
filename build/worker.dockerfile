@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM docker.pkg.github.com/biigle/core/worker:latest
+FROM ghcr.io/biigle/worker:latest
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 COPY --from=intermediate /etc/localtime /etc/localtime

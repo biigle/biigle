@@ -6,16 +6,16 @@ This guide describes how basic maintenance operations such as updates of a BIIGL
 
 Perform these steps to update an existing BIIGLE instance.
 
-1. Apply the latest changes from the [`biigle/distribution`](https://github.com/biigle/distribution) repository with `git pull upstream master`. If this throws an error that 'upstream' does not appear to be a git repository, configure the upstream repository first:
+1. Apply the latest changes from the [`biigle/biigle`](https://github.com/biigle/biigle) repository with `git pull upstream master`. If this throws an error that 'upstream' does not appear to be a git repository, configure the upstream repository first:
 
-        $ git remote add upstream https://github.com/biigle/distribution.git
+        $ git remote add upstream https://github.com/biigle/biigle.git
 
 
 2. Get the newest versions of the Docker images:
 
-         $ docker pull docker.pkg.github.com/biigle/core/app:latest
-         $ docker pull docker.pkg.github.com/biigle/core/web:latest
-         $ docker pull docker.pkg.github.com/biigle/core/worker:latest
+         $ docker pull ghcr.io/biigle/app:latest
+         $ docker pull ghcr.io/biigle/web:latest
+         $ docker pull ghcr.io/biigle/worker:latest
 
 
 3. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
