@@ -15,6 +15,7 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Maintenance: maintenance.md
+  - Module installation: module-installation.md
   - GPU computing: gpu.md
   - Synchronization: sync.md
   - Federated search: federated-search.md
