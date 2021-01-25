@@ -9,7 +9,7 @@ RUN apk add --no-cache tzdata \
     && apk del tzdata
 
 # Required to generate the REST API documentation.
-RUN apk add --no-cache npm \
+RUN apk add --no-cache npm nghttp2-dev \
     && npm install apidoc@"^0.17.0" -g
 
 # Ignore platform reqs because the app image is stripped down to the essentials
