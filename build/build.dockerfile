@@ -60,8 +60,9 @@ RUN php artisan vendor:publish --tag=public
 RUN cd /var/www && php artisan apidoc &> /dev/null
 
 # Generate the server API documentation
+# Ignore exit code 64, see https://github.com/code-lts/doctum/issues/26
 RUN curl -O https://doctum.long-term.support/releases/latest/doctum.phar \
-    && php doctum.phar update doctum.php &> /dev/null \
+    && php doctum.phar update doctum.php &> /dev/null || true \
     && rm -r doctum.phar
 
 # Add custom configs.
