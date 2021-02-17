@@ -60,9 +60,9 @@ RUN php artisan vendor:publish --tag=public
 RUN cd /var/www && php artisan apidoc &> /dev/null
 
 # Generate the server API documentation
-# RUN curl -O http://get.sensiolabs.org/sami.phar \
-#     && php sami.phar update sami.php &> /dev/null \
-#     && rm -r sami.phar
+RUN curl -O https://doctum.long-term.support/releases/latest/doctum.phar \
+    && php doctum.phar update doctum.php &> /dev/null \
+    && rm -r doctum.phar
 
 # Add custom configs.
 COPY config/filesystems.php /var/www/config/filesystems.php
