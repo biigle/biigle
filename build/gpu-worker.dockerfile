@@ -13,7 +13,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
         php7.4-pgsql \
         php7.4-json \
         php7.4-mbstring \
-        php-redis \
+        php7.4-redis \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
