@@ -20,7 +20,7 @@ If you have a question or request that is not a [bug report or feature request](
 
 - [`master`](https://github.com/biigle/biigle/tree/master): The default setup of a BIIGLE instance.
 
-- [`gpu`](https://github.com/biigle/biigle/tree/gpu): A setup of BIIGLE woth GPU computing resources (see the [docs](https://biigle-admin-documentation.readthedocs.io/gpu/)).
+- [`gpu`](https://github.com/biigle/biigle/tree/gpu): A setup of BIIGLE with GPU computing resources (see the [docs](https://biigle-admin-documentation.readthedocs.io/gpu/)).
 
 - [`arm32v6`](https://github.com/biigle/biigle/tree/arm32v6): A setup for ARM 32bit platforms (e.g. Raspberry Pi).
 
