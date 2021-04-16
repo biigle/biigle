@@ -66,6 +66,11 @@ RUN curl -O https://doctum.long-term.support/releases/latest/doctum.phar \
 
 # Add custom configs.
 COPY config/filesystems.php /var/www/config/filesystems.php
+COPY config/trustedproxy.php /var/www/config/trustedproxy.php
+RUN sed -i 's/\/\/ \\Biigle/\\Biigle/' app/Http/Kernel.php
+
+RUN sed -i '/Illuminate\\Support\\Facades\\Route/a use Illuminate\\Support\\Facades\\URL;' app/Providers/RouteServiceProvider.php
+RUN sed -i '/parent::boot/i \ \ \ \ \ \ \ \ URL::forceRootUrl(config("app.url"));' app/Providers/RouteServiceProvider.php
 
 RUN php /var/www/artisan route:cache
 

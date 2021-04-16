@@ -2,6 +2,19 @@ version: '2.3'
 
 services:
 
+  proxy:
+    image: nginx
+    restart: always
+    depends_on:
+      - web
+    volumes:
+      - ./proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 80:80
+      # - 443:443 # Remove for a setup without SSL
+    # Uncomment to use the webserver without SSL:
+    # command: nginx -g 'daemon off;' -c /etc/nginx/nginx-no-ssl.conf
+
   app:
     image: biigle/app-dist
     user: ${USER_ID}:${GROUP_ID}
@@ -27,11 +40,11 @@ services:
         source: ./storage
         target: /var/www/storage
         read_only: true
-    ports:
-      - 80:80
-      - 443:443 # Remove for a setup without SSL
+    # ports:
+      # - 80:80
+      # - 443:443 # Remove for a setup without SSL
     # Uncomment to use the webserver without SSL:
-    # command: nginx -g 'daemon off;' -c /etc/nginx/nginx-no-ssl.conf
+    command: nginx -g 'daemon off;' -c /etc/nginx/nginx-no-ssl.conf
 
   worker:
     image: biigle/worker-dist
