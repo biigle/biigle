@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM tensorflow/tensorflow:1.15.4-gpu-py3
+FROM tensorflow/tensorflow:2.5.0-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 # Install PHP 7.4 because this time we start from the TensorFlow base image.

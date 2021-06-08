@@ -18,7 +18,7 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg LASERPOINTS_VERSION="^2.0" \
     --build-arg ANANAS_VERSION="^1.0" \
     --build-arg SYNC_VERSION="^2.0" \
-    --build-arg MAIA_VERSION="^1.0" \
+    --build-arg MAIA_VERSION="^1.18" \
     .
 
 # Update the composer cache directory for much faster builds.
