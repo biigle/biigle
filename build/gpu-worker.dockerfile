@@ -1,12 +1,10 @@
 FROM biigle/build-dist AS intermediate
 
-FROM tensorflow/tensorflow:2.6.1-gpu
+FROM tensorflow/tensorflow:2.5.2-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 # Install PHP 7.4 because this time we start from the TensorFlow base image.
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C \
-    && apt-get update \
+RUN LC_ALL=C.UTF-8 apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         php7.4-cli \
         php7.4-curl \
