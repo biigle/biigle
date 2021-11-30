@@ -34,6 +34,10 @@ Reference publications that you should cite if you use BIIGLE for one of your st
     [Langenkämper, D., Zurowietz, M., Schoening, T., & Nattkemper, T. W. (2017). Biigle 2.0-browsing and annotating large marine image collections.](https://doi.org/10.3389/fmars.2017.00083)
     Frontiers in Marine Science, 4, 83. doi: `10.3389/fmars.2017.00083`
 
+- **Observations From Four Years of BIIGLE 2.0**
+    [Zurowietz, M., & Nattkemper, T. W. (2021). Current Trends and Future Directions of Large Scale Image and Video Annotation: Observations From Four Years of BIIGLE 2.0.](https://doi.org/10.3389/fmars.2021.760036)
+    Frontiers in Marine Science, 8, 760036. doi: `10.3389/fmars.2021.760036`
+
 - **Laser Point Detection**
     [Schoening, T., Kuhn, T., Bergmann, M., & Nattkemper, T. W. (2015). DELPHI—fast and adaptive computational laser point detection and visual footprint quantification for arbitrary underwater image collections.](https://doi.org/10.3389/fmars.2015.00020)
     Frontiers in Marine Science, 2, 20. doi: `10.3389/fmars.2015.00020`
