@@ -3,15 +3,17 @@ FROM biigle/build-dist AS intermediate
 FROM tensorflow/tensorflow:2.5.2-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
-# Install PHP 7.4 because this time we start from the TensorFlow base image.
 RUN LC_ALL=C.UTF-8 apt-get update \
+    && apt-get install -y --no-install-recommends software-properties-common \
+    && add-apt-repository -y ppa:ondrej/php \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        php7.4-cli \
-        php7.4-curl \
-        php7.4-pgsql \
-        php7.4-json \
-        php7.4-mbstring \
-        php7.4-redis \
+        php8.0-cli \
+        php8.0-curl \
+        php8.0-pgsql \
+        php8.0-mbstring \
+        php8.0-redis \
+    && apt-get purge -y software-properties-common \
+    && apt-get -y autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
 
