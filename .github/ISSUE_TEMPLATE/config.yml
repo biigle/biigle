@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug report or feature request
+    url: https://github.com/biigle/core/issues/new
+    about: Please open a new issue in biigle/core.
+  - name: Request for help or anything else
+    url: https://github.com/biigle/core/discussions
+    about: Please open a new discussion in biigle/core.
