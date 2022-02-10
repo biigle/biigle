@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM tensorflow/tensorflow:2.5.2-gpu
+FROM tensorflow/tensorflow:2.5.3-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 RUN LC_ALL=C.UTF-8 apt-get update \
