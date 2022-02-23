@@ -12,6 +12,10 @@ RUN apk add --no-cache tzdata \
 RUN apk add --no-cache npm nghttp2-dev \
     && npm install apidoc@"^0.17.0" -g
 
+# Enable rate limiting with Redis.
+# see: https://laravel.com/docs/9.x/routing#throttling-with-redis
+RUN sed -i 's/ThrottleRequests/ThrottleRequestsWithRedis/' app/Http/Kernel.php
+
 # Ignore platform reqs because the app image is stripped down to the essentials
 # and doens't meet some of the requirements. We do this for the worker, though.
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
