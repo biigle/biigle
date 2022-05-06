@@ -3,6 +3,11 @@ FROM biigle/build-dist AS intermediate
 FROM tensorflow/tensorflow:2.5.3-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
+# Install NVIDIA key.
+RUN curl -O https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \
+    && apt-key add 3bf863cc.pub \
+    && rm 3bf863cc.pub
+
 RUN LC_ALL=C.UTF-8 apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
