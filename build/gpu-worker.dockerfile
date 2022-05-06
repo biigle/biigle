@@ -39,7 +39,7 @@ RUN apt-get update \
         libxext6 \
         libxrender1 \
         zlib1g \
-        libhdf5-103 \
+        libhdf5-100 \
         build-essential \
         python3-dev \
         python3-pip \
