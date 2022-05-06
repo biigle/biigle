@@ -54,7 +54,7 @@ services:
     volumes_from:
       - app
     init: true
-    command: "php -d memory_limit=1G artisan queue:work --queue=gpu --sleep=5 --tries=1 --timeout=0"
+    command: "php -d memory_limit=1G artisan queue:work --sleep=5 --tries=1 --timeout=0 gpu"
 
   scheduler:
     image: biigle/worker-dist
