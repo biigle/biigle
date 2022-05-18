@@ -14,6 +14,7 @@ RUN LC_ALL=C.UTF-8 apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         php8.0-cli \
         php8.0-curl \
+        php8.0-xml \
         php8.0-pgsql \
         php8.0-mbstring \
         php8.0-redis \
