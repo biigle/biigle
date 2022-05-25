@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM tensorflow/tensorflow:2.5.3-gpu
+FROM tensorflow/tensorflow:2.6.4-gpu
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 # Install NVIDIA key.
