@@ -61,7 +61,7 @@ Perform these steps on the machine that should run BIIGLE.
 
 6. Now build the Docker images for production: `cd build && ./build.sh`. You can build the images on a separate machine, too, and transfer them to the production machine using [`docker save`](https://docs.docker.com/engine/reference/commandline/save/) and [`docker load`](https://docs.docker.com/engine/reference/commandline/load/). `build.sh` also supports an optional argument to specify the version tag of the Docker images to build (e.g. `v2.8.0`). Default is `latest`.
 
-7. Go back and run the containers: `cd .. && docker-compose up -d`.
+7. Go back and run the containers: `cd .. && docker compose up -d`.
 
 8. Apply the database migrations: `./artisan migrate`.
 

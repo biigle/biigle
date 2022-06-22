@@ -26,10 +26,10 @@ Perform these steps to update an existing BIIGLE instance.
 
     2. Do a database backup. This might look along the lines of:
 
-             docker exec -i $(docker-compose ps -q database) \
+             docker exec -i $(docker compose ps -q database) \
                 pg_dump -U biigle -d biigle > biigle_db.dump
 
-5. Update the running Docker containers: `docker-compose up -d`.
+5. Update the running Docker containers: `docker compose up -d`.
 
 6. If the update requires a database migration, do this:
 
@@ -54,7 +54,7 @@ To interact with these services rather than individual Docker containers, you ha
 ### Inspect the logs of running containers
 
 ```bash
-docker-compose logs [service]
+docker compose logs [service]
 ```
 
 This shows the log file of the `[service]` service. You can use `--tail=[n]` to show only the last `[n]` lines of the log file and `-f` to follow the log file in real time.
@@ -62,7 +62,7 @@ This shows the log file of the `[service]` service. You can use `--tail=[n]` to 
 ### Restart all services
 
 ```bash
-docker-compose restart
+docker compose restart
 ```
 
 This may be required if a service crashed or if file system mounts changed.
@@ -86,7 +86,7 @@ This opens the interactive PHP shell that you can use to manipulate BIIGLE. The 
 ### Change the number of worker containers
 
 ```bash
-docker-compose up -d --scale worker=[n]
+docker compose up -d --scale worker=[n]
 ```
 
 Set the number of worker containers running in parallel to `[n]`. If you want this to persist, set `scale: [n]` for the worker service in `docker-compose.yaml`.
