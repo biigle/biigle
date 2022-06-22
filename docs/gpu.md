@@ -53,9 +53,15 @@ services:
   gpu-worker:
     image: biigle/gpu-worker-dist
     user: ${USER_ID}:${GROUP_ID}
-    runtime: nvidia
     restart: always
-    scale: 1
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+            devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - ./storage:/var/www/storage
     init: true
@@ -72,6 +78,6 @@ To deploy a new GPU worker, first [install and build](/installation#installation
 
 3. Update the `USER_ID` and `GROUP_ID` variables in `.env` if necessary.
 
-4. Run `docker-compose -f docker-compose.gpu.yaml up -d` to start the GPU worker.
+4. Run `docker compose -f docker-compose.gpu.yaml up -d` to start the GPU worker.
 
 This can be done with multiple GPU machines to enable parallel processing of GPU jobs.

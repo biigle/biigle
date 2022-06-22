@@ -2,7 +2,7 @@
 
 [![Admin docs](https://readthedocs.org/projects/biigle-admin-documentation/badge/?version=latest)](https://biigle-admin-documentation.readthedocs.io/)
 
-The Bio-Image Indexing and Graphical Labelling Environment (BIIGLE) is a web service for the efficient and rapid annotation of still images and videos. Read <a href="https://doi.org/10.3389/fmars.2017.00083">the paper</a> or take a look at <a href="https://biigle.de/manual">the manual</a>.
+The Bio-Image Indexing and Graphical Labelling Environment (BIIGLE) is a web service for the efficient and rapid annotation of still images and videos. Read [the paper](https://doi.org/10.3389/fmars.2017.00083) or take a look at [the manual](https://biigle.de/manual).
 
 BIIGLE is available at [biigle.de](https://biigle.de).
 
@@ -14,7 +14,11 @@ Head over to the [admin documentation](https://biigle-admin-documentation.readth
 
 ## Support
 
-If you have a question or request that is not a [bug report or feature request](https://github.com/biigle/core/blob/master/CONTRIBUTING.md), please start a new [discussion](https://github.com/biigle/core/discussions) about it in the `biigle/core` repository.
+If you have a question or request that is not a [bug report or feature request](https://github.com/biigle/core/blob/master/CONTRIBUTING.md), please start a new [discussion](https://github.com/orgs/biigle/discussions) about it.
+
+## Contributions and bug reports
+
+Contributions to BIIGLE are always welcome. Check out [`biigle/core`](https://github.com/biigle/core/blob/master/CONTRIBUTING.md) to get started.
 
 ## Branches
 
@@ -53,10 +57,6 @@ Reference publications that you should cite if you use BIIGLE for one of your st
 - **Video Object Tracking**
     [Lukezic, A., Vojir, T., ˇCehovin Zajc, L., Matas, J., & Kristan, M. (2017). Discriminative correlation filter with channel and spatial reliability.](https://doi.org/10.1109/CVPR.2017.515)
     In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (pp. 6309-6318). doi: `10.1109/CVPR.2017.515`
-
-## Contributions and bug reports
-
-Contributions to BIIGLE are always welcome. Check out [`biigle/core`](https://github.com/biigle/core/blob/master/CONTRIBUTING.md) to get started.
 
 ## Security Vulnerabilities
 
