@@ -66,3 +66,9 @@ Perform these steps on the machine that should run BIIGLE.
 8. Apply the database migrations: `./artisan migrate`.
 
 9. Create the first user: `./artisan user:new`.
+
+## Configuration
+
+The default configuration of the production setup includes a `local` storage disk that can be used to store images and videos for new volumes (in `build/config/filesystems.php`). You can configure more storage disks as well. These storage disks are then offered as an alternative to remote volumes in BIIGLE.
+
+Storage disks must be explicitly allowed for different user roles in BIIGLE. By default, only instance admins are allowed to use the `local` storage disk for new volumes. This can be changed with the `VOLUME_ADMIN_STORAGE_DISKS` and `VOLUME_EDITOR_STORAGE_DISKS` variables in the `build/.env` file. Each variable contains a comma-separated list of storage disk names that should be allowed for the respective user role. If the variable is empty, no storage disk is allowed.
