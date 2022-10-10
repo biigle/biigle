@@ -1,4 +1,4 @@
-FROM ghcr.io/biigle/app:latest
+FROM ghcr.io/biigle/app:arm32v6
 MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
 
 # Configure the timezone.
