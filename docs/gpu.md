@@ -14,11 +14,11 @@ BIIGLE can be flexibly configured to use GPU computing resources in various scen
 
 This is the simplest setup. In this scenario, the GPU is available on the same host that runs the BIIGLE instance. BIIGLE makes use of special queues for GPU jobs and responses to distinguish between regular jobs and those that should be executed on a GPU. This requires a dedicated queue worker for GPU jobs.
 
-The `gpu` branch of [`biigle/distribution`](https://github.com/biigle/distribution/tree/gpu) includes the configuration for `biigle/maia` and same host GPU computing. Use this branch to [install](/installation#installation) your new BIIGLE instance. If you already have a BIIGLE instance set up, merge this branch in your existing configuration and then perform the [updating steps](/maintenance#updating) (including database migrations).
+The `gpu` branch of [`biigle/biigle`](https://github.com/biigle/biigle/tree/gpu) includes the configuration for `biigle/maia` and same host GPU computing. Use this branch to [install](/installation#installation) your new BIIGLE instance. If you already have a BIIGLE instance set up, merge this branch in your existing configuration and then perform the [updating steps](/maintenance#updating) (including database migrations).
 
 ## Remote Host GPU
 
-In this scenario, the GPU(s) are available on different machines than the host that runs the BIIGLE instance. Start with the `gpu` branch of [`biigle/distribution`](https://github.com/biigle/distribution/tree/gpu) as described in the [same host GPU setup](#same-host-gpu).
+In this scenario, the GPU(s) are available on different machines than the host that runs the BIIGLE instance. Start with the `gpu` branch of [`biigle/biigle`](https://github.com/biigle/biigle/tree/gpu) as described in the [same host GPU setup](#same-host-gpu).
 
 !!! warning "Important"
     The remote GPU machines need to be able to access the image and video files in the same way than the main BIIGLE instance. This could be achieved with a shared filesystem, an (S)FTP server, a cloud object storage service or with the exclusive use of remote volumes in your BIIGLE instance. You must update the `build/config/filesystems.php` file for this.
@@ -53,9 +53,15 @@ services:
   gpu-worker:
     image: biigle/gpu-worker-dist
     user: ${USER_ID}:${GROUP_ID}
-    runtime: nvidia
     restart: always
-    scale: 1
+    deploy:
+      replicas: 1
+      resources:
+        reservations:
+            devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
     volumes:
       - ./storage:/var/www/storage
     init: true
@@ -68,10 +74,10 @@ To deploy a new GPU worker, first [install and build](/installation#installation
 
 1. Transfer the `biigle/gpu-worker-dist` Docker image the the new GPU machine (e.g. using `docker save` and `docker load`).
 
-2. Copy the files of your `biigle/distribution` setup to the GPU machine (including the `.env` file). You can exclude the `build` and `certificate` directories if you like.
+2. Copy the files of your `biigle/biigle` setup to the GPU machine (including the `.env` file). You can exclude the `build` and `certificate` directories if you like.
 
 3. Update the `USER_ID` and `GROUP_ID` variables in `.env` if necessary.
 
-4. Run `docker-compose -f docker-compose.gpu.yaml up -d` to start the GPU worker.
+4. Run `docker compose -f docker-compose.gpu.yaml up -d` to start the GPU worker.
 
 This can be done with multiple GPU machines to enable parallel processing of GPU jobs.

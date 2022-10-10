@@ -1,5 +1,3 @@
-version: '2.0'
-
 services:
 
   app:
@@ -49,7 +47,7 @@ services:
     command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
-    image: arm32v6/postgres:10-alpine
+    image: arm32v6/postgres:14-alpine
     restart: always
     volumes:
       - dbdata:/var/lib/postgresql/data
@@ -59,7 +57,7 @@ services:
       - "POSTGRES_PASSWORD=secret"
 
   cache:
-    image: arm32v6/redis:3.2-alpine
+    image: arm32v6/redis:7-alpine
     restart: always
 
 volumes:
