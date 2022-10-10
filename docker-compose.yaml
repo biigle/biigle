@@ -70,7 +70,7 @@ services:
     command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
-    image: postgres:10-alpine
+    image: postgres:14-alpine
     restart: always
     volumes:
       - dbdata:/var/lib/postgresql/data
@@ -80,7 +80,7 @@ services:
       - "POSTGRES_PASSWORD=secret"
 
   cache:
-    image: redis:3.0-alpine
+    image: redis:7-alpine
     restart: always
 
 volumes:

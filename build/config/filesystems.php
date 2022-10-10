@@ -112,6 +112,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'ifdos' => [
+            'driver' => 'local',
+            'root' => storage_path('ifdos'),
+        ],
+
     ],
 
 ];
