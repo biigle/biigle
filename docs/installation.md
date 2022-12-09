@@ -52,11 +52,12 @@ Perform these steps on the machine that should run BIIGLE.
 
 3. Now set the build configuration variables in `build/.env`:
 
-    - `GITHUB_OAUTH_TOKEN` is an [OAuth token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) of your GitHub account.
+    - `GITHUB_OAUTH_TOKEN` is an [OAuth token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) of your GitHub account (with the `repo` and `read:packages` scopes).
     - `APP_KEY` is the secret encryption key. Generate one with: `head -c 32 /dev/urandom | base64`. Then set `APP_KEY=base64:<your_key>`.
     - `APP_URL` is `https://<your_domain>`. For a local setup without SSL (see below), use `http://localhost`.
     - `MIX_PUSHER_APP_HOST` should be `<your_domain>` (without `https://`, see above).
     - `MIX_PUSHER_APP_TLS` should be changed to `false` if you use a local setup without SSL.
+    - `PUSHER_APP_SECRET` should be a random string. Generate one with `pwgen 20 1`.
     - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
 
 5. Put the SSL keychain (`fullchain.pem`) and private key (`privkey.pem`) to `certificate/`. See [here](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) for a description of the required contents of the keychain file. For a local setup no SSL certificate may be required. Update the `web` service in [`docker-compose.yaml`](https://github.com/biigle/biigle/blob/master/docker-compose.yaml) as described by the comments in this case.

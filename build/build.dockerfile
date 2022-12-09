@@ -62,9 +62,10 @@ RUN php composer.phar dump-autoload -o && rm composer.phar
 RUN php artisan vendor:publish --tag=public
 
 # Compile assets. npm is installed above.
-RUN npm install \
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
+    && npm install \
     && npm run prod \
-    && rm -r node_modules
+    && rm -r .npmrc node_modules
 
 # Generate the REST API documentation.
 RUN cd /var/www && php artisan apidoc &> /dev/null
