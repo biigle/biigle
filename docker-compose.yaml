@@ -13,8 +13,6 @@ services:
 
   websockets:
     image: biigle/websockets-dist
-    ports:
-      - 6001:6001
 
   web:
     image: biigle/web-dist
@@ -32,6 +30,7 @@ services:
         target: /var/www/storage
         read_only: true
     ports:
+      - 6001:6001
       - 80:80
       - 443:443 # Remove for a setup without SSL
     # Uncomment to use the webserver without SSL:
