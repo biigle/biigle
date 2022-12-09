@@ -63,6 +63,21 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\La
 RUN php composer.phar dump-autoload -o && rm composer.phar
 
 RUN php artisan vendor:publish --tag=public
+
+ARG MIX_PUSHER_APP_KEY
+ARG MIX_PUSHER_APP_HOST
+ARG MIX_PUSHER_APP_TLS
+ARG MIX_PUSHER_PORT
+# Compile assets. npm is installed above.
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
+    && npm install \
+    && MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
+    && MIX_PUSHER_APP_HOST=${MIX_PUSHER_APP_HOST} \
+    && MIX_PUSHER_APP_TLS=${MIX_PUSHER_APP_TLS} \
+    && MIX_PUSHER_PORT=${MIX_PUSHER_PORT} \
+        npm run prod \
+    && rm -r .npmrc node_modules
+
 # Generate the REST API documentation.
 RUN cd /var/www && php artisan apidoc &> /dev/null
 
