@@ -30,4 +30,10 @@ docker build -f app.dockerfile -t biigle/app-dist:$VERSION .
 docker build -f worker.dockerfile -t biigle/worker-dist:$VERSION .
 docker build -f web.dockerfile -t biigle/web-dist:$VERSION .
 
+docker build -f websockets.dockerfile -t biigle/websockets-dist:$VERSION \
+    --build-arg SOKETI_DEFAULT_APP_ID=${SOKETI_DEFAULT_APP_ID} \
+    --build-arg SOKETI_DEFAULT_APP_KEY=${SOKETI_DEFAULT_APP_KEY} \
+    --build-arg SOKETI_DEFAULT_APP_SECRET=${SOKETI_DEFAULT_APP_SECRET} \
+    .
+
 docker image prune -f

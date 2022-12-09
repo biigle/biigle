@@ -11,11 +11,17 @@ services:
     volumes:
       - ./storage:/var/www/storage
 
+  websockets:
+    image: biigle/websockets-dist
+    ports:
+      - 6001:6001
+
   web:
     image: biigle/web-dist
     restart: always
     depends_on:
       - app
+      - websockets
     volumes:
       - type: bind
         source: ./certificate

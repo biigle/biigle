@@ -60,6 +60,12 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\La
 RUN php composer.phar dump-autoload -o && rm composer.phar
 
 RUN php artisan vendor:publish --tag=public
+
+# Compile assets. npm is installed above.
+RUN npm install \
+    && npm run prod \
+    && rm -r node_modules
+
 # Generate the REST API documentation.
 RUN cd /var/www && php artisan apidoc &> /dev/null
 
