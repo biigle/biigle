@@ -10,6 +10,7 @@ Perform these steps to update an existing BIIGLE instance.
 
         $ git remote add upstream https://github.com/biigle/biigle.git
 
+    Check if the latest changes include modifications to the `build/.env.example` file. If yes, update your `build/.env` file with the new variables.
 
 2. Get the newest versions of the Docker images:
 
