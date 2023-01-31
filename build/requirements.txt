@@ -4,7 +4,7 @@ mmcv-full
 # Update CUDA Version if necessary.
 # See: https://mmcv.readthedocs.io/en/latest/get_started/installation.html#install-with-pip
 -f https://download.openmmlab.com/mmcv/dist/cu116/torch1.13/index.html
-
+mmdet
 scikit-learn
 scikit-image
 pyvips
