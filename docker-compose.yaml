@@ -63,6 +63,7 @@ services:
       - cache
     volumes_from:
       - app
+    ipc: host # Required for Torch multiprocessing.
     init: true
     command: "php -d memory_limit=1G artisan queue:work --sleep=5 --tries=1 --timeout=0 gpu"
 
