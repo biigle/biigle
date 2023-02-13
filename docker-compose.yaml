@@ -12,6 +12,7 @@ services:
       - ./storage:/var/www/storage
 
   websockets:
+    restart: always
     image: biigle/websockets-dist
     ports:
       - 6001:6001
