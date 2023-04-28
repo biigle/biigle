@@ -33,7 +33,6 @@ services:
         target: /var/www/storage
         read_only: true
     ports:
-      - 6002:6002
       - 80:80
       - 443:443 # Remove for a setup without SSL
     # Uncomment to use the webserver without SSL:

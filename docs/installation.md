@@ -57,6 +57,7 @@ Perform these steps on the machine that should run BIIGLE.
     - `APP_URL` is `https://<your_domain>`. For a local setup without SSL (see below), use `http://localhost`.
     - `MIX_PUSHER_APP_HOST` should be `<your_domain>` (without `https://`, see above).
     - `MIX_PUSHER_APP_TLS` should be changed to `false` if you use a local setup without SSL.
+    - `MIX_PUSHER_PORT` should be changed to `80` if you use a local setup without SSL.
     - `PUSHER_APP_SECRET` should be a random string. Generate one with `pwgen 20 1`.
     - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
 
