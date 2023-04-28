@@ -55,9 +55,6 @@ Perform these steps on the machine that should run BIIGLE.
     - `GITHUB_OAUTH_TOKEN` is an [OAuth token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) of your GitHub account (with the `repo` and `read:packages` scopes).
     - `APP_KEY` is the secret encryption key. Generate one with: `head -c 32 /dev/urandom | base64`. Then set `APP_KEY=base64:<your_key>`.
     - `APP_URL` is `https://<your_domain>`. For a local setup without SSL (see below), use `http://localhost`.
-    - `MIX_PUSHER_APP_HOST` should be `<your_domain>` (without `https://`, see above).
-    - `MIX_PUSHER_APP_TLS` should be changed to `false` if you use a local setup without SSL.
-    - `MIX_PUSHER_PORT` should be changed to `80` if you use a local setup without SSL.
     - `PUSHER_APP_SECRET` should be a random string. Generate one with `pwgen 20 1`.
     - `ADMIN_EMAIL` is the email address of the administrator(s) of the application.
 
