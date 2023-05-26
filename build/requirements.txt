@@ -8,3 +8,6 @@ mmdet
 albumentations
 scikit-learn
 scikit-image
+numpy==1.22.*
+Pillow==9.3.*
+git+https://github.com/facebookresearch/segment-anything.git

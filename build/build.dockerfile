@@ -49,6 +49,7 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/ananas:${ANANAS_VERSION} \
         biigle/sync:${SYNC_VERSION} \
         biigle/maia:${MAIA_VERSION} \
+        biigle/magic-sam \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
 RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\LargoServiceProvider::class,' config/app.php \
