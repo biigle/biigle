@@ -25,10 +25,12 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         libgl1 libglib2.0-0 \
         build-essential \
+        git \
         libvips \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     && apt-get purge -y \
         build-essential \
+        git \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/* \
