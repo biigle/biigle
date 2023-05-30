@@ -1,10 +1,10 @@
 torch==1.13.*
 torchvision==0.14.*
-mmcv-full
+mmcv-full==1.7.1
 # Update CUDA Version if necessary.
 # See: https://mmcv.readthedocs.io/en/latest/get_started/installation.html#install-with-pip
 -f https://download.openmmlab.com/mmcv/dist/cu116/torch1.13/index.html
-mmdet
+mmdet==2.28.2
 albumentations
 scikit-learn
 scikit-image
