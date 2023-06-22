@@ -1,9 +1,19 @@
 services:
 
+  cache:
+    image: redis:7-alpine
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
+
   app:
     image: biigle/app-dist
     user: ${USER_ID}:${GROUP_ID}
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     depends_on:
       - cache
     tmpfs:
@@ -12,14 +22,20 @@ services:
       - ./storage:/var/www/storage
 
   websockets:
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     image: biigle/websockets-dist
     ports:
       - 6001:6001
 
   web:
     image: biigle/web-dist
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     depends_on:
       - app
       - websockets
@@ -41,37 +57,42 @@ services:
   worker:
     image: biigle/worker-dist
     user: ${USER_ID}:${GROUP_ID}
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     depends_on:
       - cache
-    volumes_from:
-      - app
+    volumes:
+      - ./storage:/var/www/storage
     init: true
     command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   scheduler:
     image: biigle/worker-dist
     user: ${USER_ID}:${GROUP_ID}
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     depends_on:
       - cache
-    volumes_from:
-      - app
+    volumes:
+      - ./storage:/var/www/storage
     command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
     image: postgres:14-alpine
-    restart: always
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 1s
     volumes:
       - dbdata:/var/lib/postgresql/data
     environment:
       - "POSTGRES_DB=biigle"
       - "POSTGRES_USER=biigle"
       - "POSTGRES_PASSWORD=secret"
-
-  cache:
-    image: redis:7-alpine
-    restart: always
 
 volumes:
   dbdata:
