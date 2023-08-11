@@ -1,10 +1,10 @@
 FROM biigle/build-dist AS intermediate
 
-FROM pytorch/pytorch:1.13.1-cuda11.6-cudnn8-runtime
+FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 LABEL maintainer "Martin Zurowietz <martin@cebitec.uni-bielefeld.de>"
 
 # Find versions here: https://launchpad.net/~ondrej/+archive/ubuntu/php
-ARG PHP_VERSION=8.1.14-2+ubuntu18.04.1+deb.sury.org+1
+ARG PHP_VERSION=8.1.21-1+ubuntu20.04.1+deb.sury.org+1
 RUN LC_ALL=C.UTF-8 apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
