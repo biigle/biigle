@@ -3,13 +3,11 @@ FROM biigle/build-dist AS intermediate
 FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
 LABEL maintainer "Martin Zurowietz <martin@cebitec.uni-bielefeld.de>"
 
-# Find versions here: https://launchpad.net/~ondrej/+archive/ubuntu/php
-ARG PHP_VERSION=8.1.21-1+ubuntu20.04.1+deb.sury.org+1
 RUN LC_ALL=C.UTF-8 apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
     && add-apt-repository -y ppa:ondrej/php \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        php8.1-cli=$PHP_VERSION \
+        php8.1-cli \
         php8.1-curl \
         php8.1-xml \
         php8.1-pgsql \
