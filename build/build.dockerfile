@@ -12,6 +12,15 @@ RUN apk add --no-cache tzdata \
 RUN apk add --no-cache npm nghttp2-dev \
     && npm install apidoc@"^0.17.0" -g
 
+ARG GITHUB_OAUTH_TOKEN
+ARG MIX_PUSHER_APP_KEY
+# Compile assets. npm is installed above.
+RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
+    && npm install \
+    && MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
+        npm run prod \
+    && rm -r .npmrc node_modules
+
 # Enable rate limiting with Redis.
 # see: https://laravel.com/docs/9.x/routing#throttling-with-redis
 RUN sed -i 's/ThrottleRequests/ThrottleRequestsWithRedis/' app/Http/Kernel.php
@@ -30,7 +39,6 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 # Include the Composer cache directory to speed up the build.
 COPY cache /root/.composer/cache
 
-ARG GITHUB_OAUTH_TOKEN
 ARG LARGO_VERSION=">=1.0"
 ARG REPORTS_VERSION=">=1.0"
 ARG GEO_VERSION=">=1.0"
@@ -60,14 +68,6 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\La
 RUN php composer.phar dump-autoload -o && rm composer.phar
 
 RUN php artisan vendor:publish --tag=public
-
-ARG MIX_PUSHER_APP_KEY
-# Compile assets. npm is installed above.
-RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
-    && npm install \
-    && MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
-        npm run prod \
-    && rm -r .npmrc node_modules
 
 # Generate the REST API documentation.
 RUN cd /var/www && php artisan apidoc &> /dev/null
