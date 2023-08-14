@@ -20,9 +20,6 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg SYNC_VERSION="^2.0" \
     --build-arg MAIA_VERSION="^2.0" \
     --build-arg MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
-    --build-arg MIX_PUSHER_APP_HOST=${MIX_PUSHER_APP_HOST} \
-    --build-arg MIX_PUSHER_APP_TLS=${MIX_PUSHER_APP_TLS} \
-    --build-arg MIX_PUSHER_PORT=${MIX_PUSHER_PORT} \
     .
 
 # Update the composer cache directory for much faster builds.
