@@ -9,5 +9,6 @@ albumentations
 scikit-learn
 scikit-image
 numpy==1.22.*
-Pillow==9.3.*
+Pillow==10.0.1
 git+https://github.com/facebookresearch/segment-anything.git
+xformers==0.0.18
