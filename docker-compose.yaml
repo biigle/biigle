@@ -87,9 +87,20 @@ services:
       - "POSTGRES_USER=biigle"
       - "POSTGRES_PASSWORD=secret"
 
+  vector_database:
+    image: ghcr.io/biigle/pgvector
+    restart: always
+    volumes:
+      - vecdbdata:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_DB=biigle"
+      - "POSTGRES_USER=biigle"
+      - "POSTGRES_PASSWORD=secret"
+
   cache:
     image: redis:7-alpine
     restart: always
 
 volumes:
   dbdata:
+  vecdbdata:
