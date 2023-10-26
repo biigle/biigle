@@ -34,6 +34,8 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/* \
     && rm -r /tmp/*
 
+RUN echo "memory_limit=1G" > "/etc/php/8.1/cli/conf.d/memory_limit.ini"
+
 WORKDIR /var/www
 
 COPY --from=intermediate /etc/localtime /etc/localtime
