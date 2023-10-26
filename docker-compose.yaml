@@ -47,7 +47,7 @@ services:
     volumes_from:
       - app
     init: true
-    command: "php -d memory_limit=1G artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
+    command: "php artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
 
   gpu-worker:
     image: biigle/gpu-worker-dist
@@ -75,7 +75,7 @@ services:
       - cache
     volumes_from:
       - app
-    command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php -d memory_limit=1G artisan schedule:run >> /dev/null 2>&1; done'"
+    command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
     image: postgres:14-alpine
