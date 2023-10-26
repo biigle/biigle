@@ -65,7 +65,7 @@ services:
       - app
     ipc: host # Required for Torch multiprocessing.
     init: true
-    command: "php -d memory_limit=1G artisan queue:work --sleep=5 --tries=1 --timeout=0 gpu"
+    command: "php artisan queue:work --sleep=5 --tries=1 --timeout=0 gpu"
 
   scheduler:
     image: biigle/worker-dist
