@@ -10,7 +10,7 @@ Perform these steps to update an existing BIIGLE instance.
 
         $ git remote add upstream https://github.com/biigle/biigle.git
 
-    Check the [releases](https://github.com/biigle/biigle/releases) page for specific updating instructions. In particular, you should check if the latest changes include modifications to the `build/.env.example` file. If yes, update your `build/.env` file with the new variables. The detailed changelog in on releases page can show which files have been changed.
+    Check the [releases](https://github.com/biigle/biigle/releases) page for specific updating instructions. In particular, you should check if the latest changes include modifications to the `build/.env.example` file. If yes, update your `build/.env` file with the new variables. The "full changelog" on releases page can show which files have been changed between releases.
 
 2. Get the newest versions of the Docker images:
 
