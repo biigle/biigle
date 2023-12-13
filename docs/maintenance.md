@@ -25,10 +25,7 @@ Perform these steps to update an existing BIIGLE instance.
 
     1. Put the application in maintenance mode: `./artisan down`.
 
-    2. Do a database backup. This might look along the lines of:
-
-             docker exec -i $(docker compose ps -q database) \
-                pg_dump -U biigle -d biigle > biigle_db.dump
+    2. Do a database backup (see [below](#database-backup)).
 
 5. Update the running Docker containers: `docker compose up -d`.
 
@@ -38,6 +35,44 @@ Perform these steps to update an existing BIIGLE instance.
     2. Turn off the maintenance mode: `./artisan up`
 
 7. Run `docker image prune` to delete old Docker images that are no longer required after the update.
+
+## Database Backup
+
+In the default configuration, the BIIGLE database runs in a Docker container and is stored in a Docker volume. Even if the container is replaced, the volume and thus the database persists. Still, it is advisable to do separate database backups of a production instance. The easiest way to backup the database is through an SQL dump.
+
+### Create a database dump
+
+A database dump SQL file can be generated with the command:
+
+    docker exec -i $(docker compose ps -q database) \
+        pg_dump -U biigle -d biigle > biigle_db.sql
+
+### Restore a database dump
+
+An SQL dump can be restored to an empty database with the command:
+
+    cat biigle_db.sql | docker exec -i $(docker compose ps -q database) \
+        psql -U biigle biigle
+
+### Separate feature vectors
+
+The database also stores feature vectors of certain items (e.g. annotations), which can make the database very large. Since feature vectors could also be recomputed from the (other) information in the database and the original image/video files, they can be backed up separately (and less frequently).
+
+Create a database backup excluding the feature vectors with the command:
+
+    docker exec -i $(docker compose ps -q database) \
+        pg_dump --exclude-table-data "*_feature_vectors" -U biigle -d biigle \
+        > biigle_db.sql
+
+Create a database backup that only includes feature vectors with the command:
+
+    docker exec -i $(docker compose ps -q database) \
+         pg_dump --insert --on-conflict-do-nothing --data-only \
+         --table "*_feature_vectors" -U biigle -d biigle \
+         > biigle_vector_db.sql
+
+To restore the backups, run the command of the [previous section](#restore-a-database-dump) first with `biigle_db.sql` and then with `biigle_vector_db.sql`. The second command can take a while as it uses a slower method to insert data that skips feature vectors of items that no longer exist in the other tables.
+
 
 ## Common tasks
 
