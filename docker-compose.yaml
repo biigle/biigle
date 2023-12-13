@@ -60,20 +60,10 @@ services:
     command: "/bin/sh -c 'trap exit TERM; while sleep 60 & wait; do php artisan schedule:run >> /dev/null 2>&1; done'"
 
   database:
-    image: postgres:14-alpine
-    restart: always
-    volumes:
-      - dbdata:/var/lib/postgresql/data
-    environment:
-      - "POSTGRES_DB=biigle"
-      - "POSTGRES_USER=biigle"
-      - "POSTGRES_PASSWORD=secret"
-
-  vector_database:
     image: ghcr.io/biigle/pgvector
     restart: always
     volumes:
-      - vecdbdata:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
     environment:
       - "POSTGRES_DB=biigle"
       - "POSTGRES_USER=biigle"
@@ -85,4 +75,3 @@ services:
 
 volumes:
   dbdata:
-  vecdbdata:
