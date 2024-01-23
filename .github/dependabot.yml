@@ -4,3 +4,5 @@ updates:
       directory: "/build"
       schedule:
           interval: "weekly"
+      # Disable version updates
+      open-pull-requests-limit: 0
