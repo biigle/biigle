@@ -38,6 +38,10 @@ RUN apt-get update \
 
 RUN echo "memory_limit=1G" > "/etc/php/8.1/cli/conf.d/memory_limit.ini"
 
+# Ensure compatibility with default paths of bigle/largo.
+RUN ln -s /opt/conda/bin/python3 /usr/bin/python3
+RUN ln -s /opt/conda/bin/python /usr/bin/python
+
 WORKDIR /var/www
 
 COPY --from=intermediate /etc/localtime /etc/localtime
