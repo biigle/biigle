@@ -6,7 +6,7 @@ mmcv==2.1.*
 # Update CUDA Version if necessary.
 # See: https://mmcv.readthedocs.io/en/latest/get_started/installation.html#install-with-pip
 -f https://download.openmmlab.com/mmcv/dist/cu118/torch2.1/index.html
-mmdet==3.1.*
+mmdet==3.2.*
 albumentations
 scikit-learn
 scikit-image
