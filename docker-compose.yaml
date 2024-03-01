@@ -47,7 +47,7 @@ services:
     volumes_from:
       - app
     init: true
-    command: "php artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0"
+    command: "php artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0 --max-jobs=100"
 
   scheduler:
     image: biigle/worker-dist
