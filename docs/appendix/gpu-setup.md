@@ -1,3 +1,5 @@
+**These instructions are from 2020 and slightly outdated now. They will be [updated](https://github.com/biigle/biigle/issues/26).**
+
 This is an example setup of a machine that should run GPU computing for BIIGLE. It is based on a clean install of Ubuntu 18.04 with the user `ubuntu` and an NVIDIA GPU.
 
 1. Run `sudo apt update && sudo apt upgrade`.
