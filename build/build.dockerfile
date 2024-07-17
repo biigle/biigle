@@ -1,5 +1,6 @@
 FROM ghcr.io/biigle/app:latest
-MAINTAINER Martin Zurowietz <martin@cebitec.uni-bielefeld.de>
+LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
+LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
 
 # Configure the timezone.
 ARG TIMEZONE
