@@ -1,7 +1,8 @@
 FROM biigle/build-dist AS intermediate
 
 FROM pytorch/pytorch:2.1.2-cuda11.8-cudnn8-runtime
-LABEL maintainer "Martin Zurowietz <martin@cebitec.uni-bielefeld.de>"
+LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
+LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
 
 RUN LC_ALL=C.UTF-8 apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
