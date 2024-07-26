@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM pytorch/pytorch:2.1.2-cuda11.8-cudnn8-runtime
+FROM pytorch/pytorch:2.2.2-cuda11.8-cudnn8-runtime
 LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
 LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
 
