@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielef
 LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
 
 RUN LC_ALL=C.UTF-8 apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common \
+    && apt-get install -y --no-install-recommends software-properties-common gnupg-agent \
     && add-apt-repository -y ppa:ondrej/php \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         php8.1-cli \
@@ -14,7 +14,7 @@ RUN LC_ALL=C.UTF-8 apt-get update \
         php8.1-pgsql \
         php8.1-mbstring \
         php8.1-redis \
-    && apt-get purge -y software-properties-common \
+    && apt-get purge -y software-properties-common gnupg-agent \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -r /var/lib/apt/lists/*
