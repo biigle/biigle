@@ -112,9 +112,14 @@ return [
             'visibility' => 'public',
         ],
 
-        'ifdos' => [
+        'metadata' => [
             'driver' => 'local',
-            'root' => storage_path('ifdos'),
+            'root' => storage_path('metadata'),
+        ],
+
+        'pending-metadata' => [
+            'driver' => 'local',
+            'root' => storage_path('pending-metadata'),
         ],
 
         'magic-sam' => [
