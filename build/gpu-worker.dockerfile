@@ -8,12 +8,12 @@ RUN LC_ALL=C.UTF-8 apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common gnupg-agent \
     && add-apt-repository -y ppa:ondrej/php \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-        php8.1-cli \
-        php8.1-curl \
-        php8.1-xml \
-        php8.1-pgsql \
-        php8.1-mbstring \
-        php8.1-redis \
+        php8.2-cli \
+        php8.2-curl \
+        php8.2-xml \
+        php8.2-pgsql \
+        php8.2-mbstring \
+        php8.2-redis \
     && apt-get purge -y software-properties-common gnupg-agent \
     && apt-get -y autoremove \
     && apt-get clean \
