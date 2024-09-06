@@ -1,5 +1,5 @@
 # Torch is included in the base Docker image.
-#torch==2.1.*
+#torch==2.2.*
 #torchvision==0.16.*
 
 mmcv==2.1.*
@@ -14,4 +14,4 @@ numpy==1.22.*
 Pillow==10.3.0
 git+https://github.com/facebookresearch/segment-anything.git
 # xformers is directly included in the Dockerfile.
-#xformers==0.0.23
+#xformers==0.0.25.post1
