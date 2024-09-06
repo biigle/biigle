@@ -37,6 +37,8 @@ RUN apt-get update \
     && rm -r /var/lib/apt/lists/* \
     && rm -r /tmp/*
 
+RUN sed -i "s/mmcv_maximum_version = '2.2.0'/mmcv_maximum_version = '2.3.0'/" /opt/conda/lib/python3.10/site-packages/mmdet/__init__.py
+
 RUN echo "memory_limit=1G" > "/etc/php/8.2/cli/conf.d/memory_limit.ini"
 
 # Ensure compatibility with default paths of bigle/largo.
