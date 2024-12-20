@@ -46,7 +46,6 @@ ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
-ARG SYNC_VERSION=">=1.0"
 ARG MAIA_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php -d memory_limit=-1 composer.phar require \
@@ -56,7 +55,6 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/color-sort:${COLOR_SORT_VERSION} \
         biigle/laserpoints:${LASERPOINTS_VERSION} \
         biigle/ananas:${ANANAS_VERSION} \
-        biigle/sync:${SYNC_VERSION} \
         biigle/maia:${MAIA_VERSION} \
         biigle/magic-sam \
         --prefer-dist --update-no-dev --ignore-platform-reqs
@@ -67,7 +65,6 @@ RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\La
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\ColorSort\\ColorSortServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Sync\\SyncServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Maia\\MaiaServiceProvider::class,' config/app.php
 
 RUN php composer.phar dump-autoload -o && rm composer.phar
