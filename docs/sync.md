@@ -1,6 +1,6 @@
 # Synchronization between BIIGLE instances
 
-The [`biigle/sync`](https://github.com/biigle/sync) module allows the synchronization of users, label trees and volumes between BIIGLE instances. The module is installed by default if you use [`biigle/biigle`](https://github.com/biigle/biigle).
+BIIGLE allows the synchronization of users, label trees and volumes between instances.
 
 ## Use case
 
