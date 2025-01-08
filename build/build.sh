@@ -12,7 +12,6 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
     --build-arg GITHUB_OAUTH_TOKEN=${GITHUB_OAUTH_TOKEN} \
     --build-arg LARGO_VERSION="^2.0" \
-    --build-arg REPORTS_VERSION="^4.0" \
     --build-arg GEO_VERSION="^1.7" \
     --build-arg COLOR_SORT_VERSION="^2.0" \
     --build-arg LASERPOINTS_VERSION="^2.0" \
