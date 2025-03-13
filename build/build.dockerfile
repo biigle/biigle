@@ -14,12 +14,12 @@ RUN apk add --no-cache npm nghttp2-dev \
     && npm install apidoc@"^0.17.0" -g
 
 ARG GITHUB_OAUTH_TOKEN
-ARG MIX_PUSHER_APP_KEY
+ARG PUSHER_APP_KEY
 # Compile assets. npm is installed above.
 RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
     && npm install \
-    && MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
-        npm run prod \
+    && VITE_PUSHER_APP_KEY=${PUSHER_APP_KEY} \
+        npm run build \
     && rm -r .npmrc node_modules
 
 # Enable rate limiting with Redis.
