@@ -17,13 +17,8 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg LASERPOINTS_VERSION="^2.0" \
     --build-arg ANANAS_VERSION="^1.0" \
     --build-arg MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
+    --build-arg FORCE_TIMESTAMP=$(date +%s) \
     .
-
-# Update the composer cache directory for much faster builds.
-# Use -s to skip updating the cache directory.
-ID=$(docker create biigle/build-dist)
-docker cp ${ID}:/root/.composer/cache .
-docker rm ${ID}
 
 docker build -f app.dockerfile -t biigle/app-dist:$VERSION .
 docker build -f worker.dockerfile -t biigle/worker-dist:$VERSION .
