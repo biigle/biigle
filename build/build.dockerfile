@@ -37,10 +37,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 ENV COMPOSER_NO_INTERACTION 1
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Include the Composer cache directory to speed up the build.
-COPY cache /root/.composer/cache
+# Force Docker to rebuild following steps.
+ARG FORCE_TIMESTAMP
 
-ARG LARGO_VERSION=">=1.0"
 ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
@@ -48,7 +47,6 @@ ARG ANANAS_VERSION=">=1.0"
 ARG MAIA_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php -d memory_limit=-1 composer.phar require \
-        biigle/largo:${LARGO_VERSION} \
         biigle/geo:${GEO_VERSION} \
         biigle/color-sort:${COLOR_SORT_VERSION} \
         biigle/laserpoints:${LASERPOINTS_VERSION} \
@@ -57,8 +55,7 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/magic-sam \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
-RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Largo\\LargoServiceProvider::class,' config/app.php \
-    && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Geo\\GeoServiceProvider::class,' config/app.php \
+RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Geo\\GeoServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\ColorSort\\ColorSortServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Laserpoints\\LaserpointsServiceProvider::class,' config/app.php \
     && sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Ananas\\AnanasServiceProvider::class,' config/app.php \
