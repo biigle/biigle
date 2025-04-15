@@ -37,8 +37,8 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 ENV COMPOSER_NO_INTERACTION 1
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# Include the Composer cache directory to speed up the build.
-COPY cache /root/.composer/cache
+# Force Docker to rebuild following steps.
+ARG FORCE_TIMESTAMP
 
 ARG LARGO_VERSION=">=1.0"
 ARG GEO_VERSION=">=1.0"
