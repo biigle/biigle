@@ -14,4 +14,4 @@ numpy==1.24.*
 Pillow==10.3.0
 git+https://github.com/facebookresearch/segment-anything.git
 # xformers is directly included in the Dockerfile.
-#xformers==0.0.25.post1
+#xformers==0.0.29.post3

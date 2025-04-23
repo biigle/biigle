@@ -28,7 +28,7 @@ RUN apt-get update \
         libvips \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     # Use --no-dependencies so torch is not installed again.
-    && pip3 install --no-dependencies --index-url https://download.pytorch.org/whl/cu118 xformers==0.0.25.post1 \
+    && pip3 install --no-dependencies --index-url https://download.pytorch.org/whl/cu118 xformers==0.0.29.post3 \
     && apt-get purge -y \
         build-essential \
         git \
