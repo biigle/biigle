@@ -16,7 +16,7 @@ docker build -f build.dockerfile -t biigle/build-dist \
     --build-arg COLOR_SORT_VERSION="^2.0" \
     --build-arg LASERPOINTS_VERSION="^2.0" \
     --build-arg ANANAS_VERSION="^1.0" \
-    --build-arg MIX_PUSHER_APP_KEY=${MIX_PUSHER_APP_KEY} \
+    --build-arg PUSHER_APP_KEY=${PUSHER_APP_KEY} \
     --build-arg FORCE_TIMESTAMP=$(date +%s) \
     .
 
