@@ -40,14 +40,12 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 # Force Docker to rebuild following steps.
 ARG FORCE_TIMESTAMP
 
-ARG LARGO_VERSION=">=1.0"
 ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
 RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php -d memory_limit=-1 composer.phar require \
-        biigle/largo:${LARGO_VERSION} \
         biigle/geo:${GEO_VERSION} \
         biigle/color-sort:${COLOR_SORT_VERSION} \
         biigle/laserpoints:${LASERPOINTS_VERSION} \
