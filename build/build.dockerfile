@@ -13,6 +13,9 @@ RUN apk add --no-cache tzdata \
 RUN apk add --no-cache npm nghttp2-dev \
     && npm install apidoc@"^0.17.0" -g
 
+# Download the DINOv2 weights used by LabelBOT.
+RUN curl -o /var/www/public/assets/dinov2_vits14.onnx https://github.com/biigle/core/releases/download/untagged-253cef706f5a548adf14/dinov2_vits14.onnx
+
 ARG GITHUB_OAUTH_TOKEN
 ARG PUSHER_APP_KEY
 # Compile assets. npm is installed above.
