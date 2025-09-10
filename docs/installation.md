@@ -66,6 +66,8 @@ Perform these steps on the machine that should run BIIGLE.
 
 8. Apply the database migrations: `./artisan migrate`.
 
+8. Create the LabelBOT database index: `./artisan labelbot:create-index`.
+
 9. Create the first user: `./artisan user:new`.
 
 ## Configuration
