@@ -56,6 +56,7 @@ RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}
         biigle/ananas:${ANANAS_VERSION} \
         biigle/maia:${MAIA_VERSION} \
         biigle/magic-sam \
+        biigle/ptp \
         --prefer-dist --update-no-dev --ignore-platform-reqs
 
 RUN sed -i '/Insert Biigle module service providers/i Biigle\\Modules\\Geo\\GeoServiceProvider::class,' config/app.php \
