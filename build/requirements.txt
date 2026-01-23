@@ -12,3 +12,4 @@ git+https://github.com/facebookresearch/segment-anything.git
 #xformers==0.0.29.post3
 pandas
 pycocotools
+sahi
