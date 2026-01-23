@@ -11,3 +11,4 @@ git+https://github.com/facebookresearch/segment-anything.git
 # xformers is directly included in the Dockerfile.
 #xformers==0.0.29.post3
 pandas
+pycocotools
