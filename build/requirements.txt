@@ -2,7 +2,7 @@
 #torch==2.9.*
 #torchvision==0.24.*
 
-albumentations==1.4.*
+albumentations==2.0.*
 scikit-learn
 scikit-image
 numpy==2.1.*
