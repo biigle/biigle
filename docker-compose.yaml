@@ -49,6 +49,21 @@ services:
     init: true
     command: "php artisan queue:work --queue=high,default --sleep=5 --tries=3 --timeout=0 --memory=1024"
 
+  pyworker:
+    image: ghcr.io/biigle/pyworker
+    user: ${USER_ID}:${GROUP_ID}
+    restart: always
+    volumes_from:
+      - app
+    init: true
+    environment:
+      # Services should share the cache directory.
+      - TORCH_HOME=storage/largo_cache
+      # This is required for much faster CPU processing.
+      # See: https://pytorch.org/tutorials/intermediate/torchserve_with_ipex.html
+      - OMP_NUM_THREADS=2
+    command: "python resources/scripts/ExtractFeaturesWorker.py"
+
   scheduler:
     image: biigle/worker-dist
     user: ${USER_ID}:${GROUP_ID}
