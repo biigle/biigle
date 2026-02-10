@@ -75,7 +75,9 @@ RUN curl -O https://doctum.long-term.support/releases/latest/doctum.phar \
 # Add custom configs.
 COPY config/filesystems.php /var/www/config/filesystems.php
 
-RUN php /var/www/artisan route:cache
-
+# The .env file must be available for the routes and config because sometimes the env
+# variables are used in routes (e.g. with Livewire).
 COPY .env /var/www/.env
-RUN php /var/www/artisan config:cache && rm /var/www/.env
+RUN php /var/www/artisan route:cache
+RUN php /var/www/artisan config:cache
+RUN rm /var/www/.env
