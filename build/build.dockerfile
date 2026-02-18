@@ -82,8 +82,8 @@ COPY config/filesystems.php /var/www/config/filesystems.php
 COPY config/queue.php /var/www/config/queue.php
 
 # The .env file must be available for the routes and config because sometimes the env
-# variables are used in routes (e.g. with Livewire).
+# variables are used in routes (e.g. with Livewire). Also it must not be removed because
+# Sometimes the config cache is cleared to enable a dynamic config (e.g. for Laravel Pulse).
 COPY .env /var/www/.env
 RUN php /var/www/artisan route:cache
 RUN php /var/www/artisan config:cache
-RUN rm /var/www/.env
