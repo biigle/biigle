@@ -88,7 +88,7 @@ services:
       # Important: The model checkpoint must match with the ONNX file (see config/
       # magic_sam.php)!
       - SAM_MODEL_URL=https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth
-    command: "python vendor/biigle/magic-sam/src/resources/scripts/GenerateEmbeddingWorker.py"
+    command: "python -u vendor/biigle/magic-sam/src/resources/scripts/GenerateEmbeddingWorker.py"
 
   gpu-worker:
     image: biigle/gpu-worker-dist
