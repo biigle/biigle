@@ -1,0 +1,9 @@
+version: 2
+updates:
+    - package-ecosystem: pip
+      directory: "/build"
+      schedule:
+          interval: "weekly"
+      # Disable version updates
+      open-pull-requests-limit: 0
+      target-branch: "gpu"
