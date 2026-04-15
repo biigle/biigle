@@ -6,7 +6,7 @@ albumentations==2.0.*
 scikit-learn
 scikit-image
 numpy==2.1.*
-Pillow==10.3.0
+Pillow==12.2.0
 git+https://github.com/facebookresearch/segment-anything.git
 # xformers is directly included in the Dockerfile.
 #xformers==0.0.29.post3
