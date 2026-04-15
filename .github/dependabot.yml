@@ -6,3 +6,4 @@ updates:
           interval: "weekly"
       # Disable version updates
       open-pull-requests-limit: 0
+      target-branch: "gpu"
