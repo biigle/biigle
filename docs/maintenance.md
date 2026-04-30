@@ -17,6 +17,7 @@ Perform these steps to update an existing BIIGLE instance.
          $ docker pull ghcr.io/biigle/app:latest
          $ docker pull ghcr.io/biigle/web:latest
          $ docker pull ghcr.io/biigle/worker:latest
+         $ docker pull ghcr.io/biigle/pyworker:latest
 
 
 3. Run `cd build && ./build.sh`. This will fetch and install the newest versions of the BIIGLE modules, according to the version constraints configured in `build.sh`. Again, you can do this on a separate machine, too (see above). In this case the images mentioned above are not required on the production machine.
