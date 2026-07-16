@@ -1,6 +1,6 @@
 FROM biigle/build-dist AS intermediate
 
-FROM pytorch/pytorch:2.9.1-cuda12.8-cudnn9-runtime
+FROM pytorch/pytorch:2.12.1-cuda12.6-cudnn9-runtime
 LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
 LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
 
@@ -28,7 +28,7 @@ RUN apt-get update \
         libvips \
     && pip3 install --no-cache-dir -r /tmp/requirements.txt \
     # Use --no-dependencies so torch is not installed again.
-    && pip3 install --no-dependencies --index-url https://download.pytorch.org/whl/cu128 xformers \
+    && pip3 install --no-dependencies xformers>=0.0.34 \
     && apt-get purge -y \
         build-essential \
         git \
