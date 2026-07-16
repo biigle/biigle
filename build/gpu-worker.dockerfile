@@ -26,9 +26,9 @@ RUN apt-get update \
         build-essential \
         git \
         libvips \
-    && pip3 install --no-cache-dir -r /tmp/requirements.txt \
+    && pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt \
     # Use --no-dependencies so torch is not installed again.
-    && pip3 install --no-dependencies xformers>=0.0.34 \
+    && pip3 install --no-dependencies --break-system-packages xformers>=0.0.34 \
     && apt-get purge -y \
         build-essential \
         git \
@@ -38,10 +38,6 @@ RUN apt-get update \
     && rm -r /tmp/*
 
 RUN echo "memory_limit=1G" > "/etc/php/8.5/cli/conf.d/memory_limit.ini"
-
-# Ensure compatibility with default paths of bigle/largo.
-RUN ln -s /opt/conda/bin/python3 /usr/bin/python3
-RUN ln -s /opt/conda/bin/python /usr/bin/python
 
 WORKDIR /var/www
 
