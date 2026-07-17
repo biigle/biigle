@@ -14,7 +14,6 @@ services:
   websockets:
     restart: always
     image: biigle/websockets-dist
-    env_file: build/.env
     ports:
       - 6001:6001
 
