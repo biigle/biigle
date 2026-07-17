@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM ghcr.io/biigle/app:latest
 LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
 LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
@@ -17,10 +16,14 @@ RUN apk add --no-cache npm nghttp2-dev \
 # Download the DINOv2 weights used by LabelBOT.
 RUN curl -L -o /var/www/public/assets/dinov2_vits14.onnx https://github.com/biigle/core/releases/download/v3.106.0/dinov2_vits14.onnx
 
-ARG PUSHER_APP_KEY
+# The .env file must be available for the routes and config because sometimes the env
+# variables are used in routes (e.g. with Livewire). Also it must not be removed because
+# Sometimes the config cache is cleared to enable a dynamic config (e.g. for Laravel Pulse).
+COPY .env /var/www/.env
+
 # Compile assets. npm is installed above.
-RUN --mount=type=secret,id=github_token \
-    echo "//npm.pkg.github.com/:_authToken=$(cat /run/secrets/github_token)" > .npmrc \
+RUN . ./.env \
+    && echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
     && npm install \
     && VITE_PUSHER_APP_KEY=${PUSHER_APP_KEY} \
         npm run build \
@@ -48,8 +51,8 @@ ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
-RUN --mount=type=secret,id=github_token \
-    COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"$(cat /run/secrets/github_token)\"}}" \
+RUN . ./.env \
+    && COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
     php -d memory_limit=-1 composer.phar require \
         biigle/geo:${GEO_VERSION} \
         biigle/color-sort:${COLOR_SORT_VERSION} \
@@ -77,9 +80,5 @@ RUN curl -O https://doctum.long-term.support/releases/latest/doctum.phar \
 # Add custom configs.
 COPY config/filesystems.php /var/www/config/filesystems.php
 
-# The .env file must be available for the routes and config because sometimes the env
-# variables are used in routes (e.g. with Livewire). Also it must not be removed because
-# Sometimes the config cache is cleared to enable a dynamic config (e.g. for Laravel Pulse).
-COPY .env /var/www/.env
 RUN php /var/www/artisan route:cache
 RUN php /var/www/artisan config:cache
