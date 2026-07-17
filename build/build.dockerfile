@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 FROM ghcr.io/biigle/app:latest
 LABEL org.opencontainers.image.authors="Martin Zurowietz <m.zurowietz@uni-bielefeld.de>"
 LABEL org.opencontainers.image.source="https://github.com/biigle/biigle"
@@ -16,10 +17,10 @@ RUN apk add --no-cache npm nghttp2-dev \
 # Download the DINOv2 weights used by LabelBOT.
 RUN curl -L -o /var/www/public/assets/dinov2_vits14.onnx https://github.com/biigle/core/releases/download/v3.106.0/dinov2_vits14.onnx
 
-ARG GITHUB_OAUTH_TOKEN
 ARG PUSHER_APP_KEY
 # Compile assets. npm is installed above.
-RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_OAUTH_TOKEN}" > .npmrc \
+RUN --mount=type=secret,id=github_token \
+    echo "//npm.pkg.github.com/:_authToken=$(cat /run/secrets/github_token)" > .npmrc \
     && npm install \
     && VITE_PUSHER_APP_KEY=${PUSHER_APP_KEY} \
         npm run build \
@@ -47,7 +48,8 @@ ARG GEO_VERSION=">=1.0"
 ARG COLOR_SORT_VERSION=">=1.0"
 ARG LASERPOINTS_VERSION=">=1.0"
 ARG ANANAS_VERSION=">=1.0"
-RUN COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"${GITHUB_OAUTH_TOKEN}\"}}" \
+RUN --mount=type=secret,id=github_token \
+    COMPOSER_AUTH="{\"github-oauth\":{\"github.com\":\"$(cat /run/secrets/github_token)\"}}" \
     php -d memory_limit=-1 composer.phar require \
         biigle/geo:${GEO_VERSION} \
         biigle/color-sort:${COLOR_SORT_VERSION} \
