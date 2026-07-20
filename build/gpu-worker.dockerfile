@@ -39,6 +39,10 @@ RUN apt-get update \
 
 RUN echo "memory_limit=1G" > "/etc/php/8.5/cli/conf.d/memory_limit.ini"
 
+# Ensure compatibility with old env configs.
+RUN mkdir -p /opt/conda/bin && ln -s /usr/bin/python3 /opt/conda/bin/python3
+RUN mkdir -p /opt/conda/bin && ln -s /usr/bin/python /opt/conda/bin/python
+
 WORKDIR /var/www
 
 COPY --from=intermediate /etc/localtime /etc/localtime
