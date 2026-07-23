@@ -9,6 +9,7 @@ VERSION=${1:-latest}
 # Composer cache which should not be included in the production images.
 # It serves as an intermediate base image for the app, worker and web images.
 docker build -f build.dockerfile -t biigle/build-dist \
+    --secret id=env,src=.env \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
     --build-arg GEO_VERSION="^1.7" \
     --build-arg COLOR_SORT_VERSION="^2.0" \
