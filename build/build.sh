@@ -11,10 +11,6 @@ VERSION=${1:-latest}
 docker build -f build.dockerfile -t biigle/build-dist \
     --secret id=env,src=.env \
     --build-arg TIMEZONE=${APP_TIMEZONE} \
-    --build-arg GEO_VERSION="^1.7" \
-    --build-arg COLOR_SORT_VERSION="^2.0" \
-    --build-arg LASERPOINTS_VERSION="^2.0" \
-    --build-arg ANANAS_VERSION="^1.0" \
     --build-arg FORCE_TIMESTAMP=$(date +%s) \
     .
 
