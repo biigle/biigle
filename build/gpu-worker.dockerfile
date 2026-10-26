@@ -28,7 +28,7 @@ RUN apt-get update \
         libvips \
     && pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt \
     # Use --no-dependencies so torch is not installed again.
-    && pip3 install --no-dependencies --break-system-packages xformers>=0.0.34 \
+    && pip3 install --no-dependencies --break-system-packages 'xformers>=0.0.34' \
     && apt-get purge -y \
         build-essential \
         git \

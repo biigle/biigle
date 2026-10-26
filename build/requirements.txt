@@ -3,13 +3,13 @@
 #torchvision==0.28.0
 
 albumentations==2.0.*
-scikit-learn
+scikit-learn==1.6.1
 scikit-image
 numpy==2.2.6
-Pillow==12.3.0
+Pillow==13.0.0
 git+https://github.com/facebookresearch/segment-anything.git
 # xformers is directly included in the Dockerfile.
 #xformers>=0.0.34
-pandas
+pandas==2.2.3
 pycocotools
 sahi
